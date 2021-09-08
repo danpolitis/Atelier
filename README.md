@@ -18,6 +18,21 @@ After you've done that, updating your repo is as simple as running the following
 
 This will check out your branch and tell git to grab any changes made to the main repository and merge them into your branch.
 
+# Pushing changes and making a pull request to main branch
+
+- create a feature branch on your local machine and save and commit changes and push to your forked repository
+
+```
+   git checkout -b new-feature-branch
+   git add .
+   git commit -m “short yet descriptive message”
+   git push origin new-feature-branch
+```
+- Then create a pull request to the main repo for reviewing and merging
+   - github.com: click New pull request button
+
+
+
  # Front-End-Dependencies
 
  - Front-End MVC
