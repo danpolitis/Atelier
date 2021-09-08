@@ -13,8 +13,8 @@
 
 After you've done that, updating your repo is as simple as running the following:
 
-- `git checkout master       // Your fork's master branch`
-- `git pull upstream master  // Your class's master branch`
+- `git checkout main       // Your fork's main branch`
+- `git pull upstream main  // Your class's main branch`
 
 This will check out your branch and tell git to grab any changes made to the main repository and merge them into your branch.
 
