@@ -17,8 +17,8 @@
    
  - CSS Frameworks
     - Bootstrap
-     - $npm i boostrap 
-     - [link to Bootstrap!](https://getbootstrap.com/)
+     - ($npm i boostrap)
+     - [Link to Bootstrap!](https://getbootstrap.com/)
 
  # Server
  - MVC
