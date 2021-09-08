@@ -2,10 +2,10 @@
  Project Catwalk comprises a complete redesign of the retail portal designed to address this concern and modernize the site.
  
  # Team Members
- -Daniel Politis
- -Jeff Liu
- -Yingchen Bai
- -Andrew Hang
+ - Daniel Politis
+ - Jeff Liu
+ - Yingchen Bai
+ - Andrew Hang
  
  # Front-End-Dependencies
  
