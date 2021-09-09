@@ -1,1 +1,3 @@
-console.log('here is a test conflict');
+console.log('here is a new file with a console.log');
+
+console.log('this is test');
