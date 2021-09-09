@@ -1,0 +1,19 @@
+{
+  "name": "project-catwalk-team-ocelot",
+  "version": "1.0.0",
+  "description": "FEC project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fec-project-catwalk-team-ocelot/project-catwalk-team-ocelot.git"
+  },
+  "author": "Jeff Liu, Daniel Politis, Yingchen Bai, Andrew Hang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fec-project-catwalk-team-ocelot/project-catwalk-team-ocelot/issues"
+  },
+  "homepage": "https://github.com/fec-project-catwalk-team-ocelot/project-catwalk-team-ocelot#readme"
+}
