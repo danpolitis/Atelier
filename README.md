@@ -30,8 +30,11 @@
    Can be solved one of two ways:
    1. Complete top level pull request and pull down from the master branch on your local machine
       - Complete code review for first request
-      - pull changes to your local machine from shared repo
-      -
+      - For subsequent pull requests, the user that submitted that pull request must
+      pull changes to your local machine from shared repo
+      - Checkout your feature branch that is associated with the pull request using `git checkout [name_of_feature]`
+      - Merge the main into your feature branch using `git merge [name_of_feature]` to handle conflicts on your local machine.
+      - commit and push changes to update the pull request
    2. Rebase
       - rebase your pull requests
 
