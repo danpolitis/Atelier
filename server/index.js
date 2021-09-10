@@ -7,7 +7,7 @@ const app = express();
 const path = require('path');
 const config = require('../config.js');
 
-const PUBLIC_DIR = path.resolve(__dirname, 'client', 'dist');
+const PUBLIC_DIR = path.resolve(__dirname, '..', 'client', 'dist');
 
 app.use(cors());
 app.use(morgan('dev'));
@@ -16,12 +16,12 @@ app.use(express.json());
 
 const PORT = 3000;
 
-app.use('/*', (req, res) => {
+app.use('/api/*', (req, res) => {
   const { body, method, originalUrl } = req;
 
   const axiosConfig = {
     method,
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax${originalUrl}`,
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax${originalUrl.slice(4)}`,
     headers: {
       'User-Agent': 'request',
       'Authorization': config.TOKEN,
