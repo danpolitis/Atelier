@@ -10,10 +10,7 @@ function App() {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-lg-8 offset-lg-2">
-          <Overview />
-        </div>
-        <div className="col"></div>
+        <Overview />
       </div>
       <div className="row">
         <RelatedItems />

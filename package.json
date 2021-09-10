@@ -4,7 +4,8 @@
   "description": "FEC project",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --watch"
+    "build": "webpack --watch",
+    "start": "nodemon server/index.js"
   },
   "repository": {
     "type": "git",
@@ -29,7 +30,6 @@
     "eslint-plugin-react": "^7.25.1",
     "eslint-plugin-react-hooks": "^4.2.0",
     "jest": "^27.1.1",
-    "morgan": "^1.10.0",
     "nodemon": "^2.0.12",
     "webpack": "^5.52.0",
     "webpack-cli": "^4.8.0"
@@ -37,9 +37,12 @@
   "dependencies": {
     "axios": "^0.21.4",
     "bootstrap": "^5.1.1",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
+    "morgan": "^1.10.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-icons": "^4.2.0",
     "underscore": "^1.13.1"
   }
 }
