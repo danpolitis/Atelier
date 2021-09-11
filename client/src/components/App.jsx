@@ -11,18 +11,10 @@ function App() {
   const [productId, setProductId] = useState(42366);
   return (
     <div className="container">
-      <div className="row">
-        <Overview productId={productId} />
-      </div>
-      <div className="row">
-        <RelatedItems productId={productId} setProductId={setProductId} />
-      </div>
-      <div className="row">
-        <QuestionsAndAnswers productId={productId} />
-      </div>
-      <div className="row">
-        <Reviews productId={productId} />
-      </div>
+      <Overview productId={productId} />
+      <RelatedItems productId={productId} setProductId={setProductId} />
+      <QuestionsAndAnswers productId={productId} />
+      <Reviews productId={productId} />
     </div>
   );
 }
