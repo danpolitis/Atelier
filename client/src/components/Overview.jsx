@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Overview() {
+function Overview({ productId }) {
   return <div>Overview</div>;
 }
 
