@@ -82,5 +82,7 @@ typings/
 .serverless/
 
 # Sensitive files
-
 config.js
+
+# webpack bundle
+client/dist/bundle.js

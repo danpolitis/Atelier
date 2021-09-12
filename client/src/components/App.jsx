@@ -10,7 +10,7 @@ import axios from 'axios';
 function App() {
   const [productId, setProductId] = useState(42366);
   return (
-    <div className="container">
+    <div>
       <Overview productId={productId} />
       <RelatedItems productId={productId} setProductId={setProductId} />
       <QuestionsAndAnswers productId={productId} />
