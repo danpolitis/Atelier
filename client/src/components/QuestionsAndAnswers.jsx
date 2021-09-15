@@ -43,7 +43,7 @@ function QuestionsAndAnswers({ productId }) {
   };
 
   return (
-    <div>
+    <div className="container mb-5">
       <span className="q-a-title">QUESTIONS & ANSWERS</span>
       <SearchQuestion
         handleSearch={handleSearch}

@@ -35,7 +35,7 @@ function Reviews({ productId }) {
     getMetaData(productId);
   }, [productId]);
   return (
-    <div>
+    <div className="container mb-5">
       <h5>Ratings & Reviews</h5>
       <div className="container">
         <div className="row">
