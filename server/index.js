@@ -18,7 +18,6 @@ const PORT = 3000;
 
 app.use('/api/*', (req, res) => {
   const { body, method, originalUrl } = req;
-
   const axiosConfig = {
     method,
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax${originalUrl.slice(4)}`,
