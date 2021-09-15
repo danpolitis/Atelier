@@ -85,4 +85,4 @@ typings/
 config.js
 
 # webpack bundle
-client/dist/bundle.js
+bundle.js
