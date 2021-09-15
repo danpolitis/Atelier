@@ -1,0 +1,132 @@
+/* Overview: Main image carousel */
+#mainImage .carousel-inner {
+  height: 75vh;
+  width: 100%;
+}
+#mainImage .carousel-item img {
+  position: relative;
+  object-fit: contain;
+  object-position: top;
+  overflow: hidden;
+  height: 75vh;
+  z-index: 10;
+}
+#mainImage .carousel-item {
+  cursor: zoom-in;
+}
+#mainImage .carousel-indicators.normalView {
+  position: absolute;
+  width: 10%;
+  margin: 0;
+  padding-left: 10px;
+  top: 0;
+}
+#mainImage .carousel-indicators.normalView .active {
+  border-bottom: 5px solid black;
+  padding-bottom: 5px;
+}
+#mainImage .carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+}
+
+#mainImage .carousel-control-next-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+}
+#mainImage .carousel-indicators [data-bs-target] {
+  box-sizing: border-box !important;
+  border: 0;
+}
+#mainImage .carousel-indicators img {
+  width: 60px !important;
+  height: 60px !important;
+  object-fit: cover;
+  opacity: 1 !important;
+}
+#mainImage .carousel-control-prev {
+  left: 40px;
+}
+
+#mainImage .thumbnailArrows {
+  color: black;
+  width: 60px;
+  position: relative;
+}
+
+
+/* Overview: style selectors */
+#style-thumbnails img {
+  width: 60px;
+  border-radius: 50%;
+  height: 60px;
+  object-fit: cover;
+  border: 2px solid black;
+}
+#style-thumbnails svg {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  left: 50px;
+}
+#style-thumbnails button {
+  position: relative;
+  background: none;
+  border: none;
+  display: flex;
+  flex-basis: 25%;
+}
+
+/* Overview: features list */
+#featureList ul {
+  list-style: none;
+}
+
+#featureList ul li:before {
+  content: '✓';
+  font-size: 1.75rem;
+  margin-right: 1rem;
+}
+
+/* Overview: Review Snippet */
+.reviewSnippet svg {
+  height: 20px !important;
+  width: 20px !important;
+}
+.reviewSnippet .star-container {
+  padding: 1px !important;
+}
+.reviewSnippet .ratingLink {
+  margin-top: 4px;
+  margin-left: 10px;
+}
+
+/* Overview: Fullscreen mode  */
+.fullscreen-icon {
+  display: flex;
+  position: absolute;
+  background: none;
+  border: hidden;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+}
+
+.showFullscreen .carousel-item img {
+  height: calc(100vh - 80px) !important;
+}
+.showFullscreen .carousel-inner {
+  height: calc(100vh - 80px) !important;
+}
+
+.showFullscreen .carousel-item {
+  cursor: crosshair;
+}
+
+.showFullscreen .carousel-item .zoomed {
+  cursor: zoom-out;
+  height: 100vh;
+}
+
+/* Navbar */
+.navbar {
+  height: 80px;
+}

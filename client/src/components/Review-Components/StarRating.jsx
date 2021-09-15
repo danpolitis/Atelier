@@ -21,14 +21,12 @@ function StarRating({ productId }) {
 
   useEffect(() => {
     getReviews(productId);
-  }, []);
+  }, [productId]);
 
-  return (
-    <div>
-      <StarRatings rating={average} starRatedColor="rgb(253,204,13)" numberOfStars={5} starDimension="30px" />
-    </div>
-
-  );
+  if (average) {
+    return <StarRatings rating={average} starRatedColor="rgb(253,204,13)" numberOfStars={5} starDimension="30px" />;
+  }
+  return '';
 }
 
 export default StarRating;
