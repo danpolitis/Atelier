@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import bootstrap from 'bootstrap';
 
 import Navbar from './Navbar.jsx';
 import Overview from './Overview.jsx';

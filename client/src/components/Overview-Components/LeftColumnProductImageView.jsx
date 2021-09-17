@@ -1,15 +1,15 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import { BiFullscreen } from 'react-icons/bi';
 import { BsChevronCompactDown, BsChevronCompactUp } from 'react-icons/bs';
-import RenderMainImages from './RenderMainImages.jsx';
+
+import RenderMainImages from './LeftColumn/RenderMainImages.jsx';
+import MainThumbnails from './LeftColumn/MainThumbnails.jsx';
+import MainIndicators from './LeftColumn/MainIndicators.jsx';
 
 function LeftColumnProductImageView({ selectedStyle, fullscreenToggle, setFullscreenToggle }) {
   let renderMainImages;
   const thumbnailsLength = selectedStyle.photos ? selectedStyle.photos.length : 0;
+
   const [zoom, setZoom] = useState(false);
   const [thumbRange, setThumbRange] = useState([0, 6]);
 
@@ -113,37 +113,6 @@ function LeftColumnProductImageView({ selectedStyle, fullscreenToggle, setFullsc
         </div>
       </div>
     </div>
-  );
-}
-
-// Helper Render Functions
-
-function MainThumbnails({ photoUrl, altText, idx, display }) {
-  const displayUrl = photoUrl === null ? 'No-Image-Placeholder.svg' : photoUrl;
-  return (
-    <img
-      src={displayUrl}
-      data-imgthumb={idx}
-      className="d-block w-100"
-      alt={altText}
-      data-bs-target="#mainImage"
-      data-bs-slide-to={idx}
-      aria-label={`Slide ${idx + 1}`}
-      className={`my-3 ${idx === 0 ? 'active' : ''} ${display ? '' : 'd-none'}`}
-      aria-current={`${idx === 0 ? 'true' : ''}`}
-    />
-  );
-}
-
-function MainIndicators({ idx }) {
-  return (
-    <button
-      type="button"
-      data-bs-target="#mainImage"
-      data-bs-slide-to={idx}
-      className={`my-3 ${idx === 0 ? 'active' : ''}`}
-      aria-current={`${idx === 0 ? 'true' : ''}`}
-    />
   );
 }
 

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 
 import LeftColumnProductImageView from './Overview-Components/LeftColumnProductImageView.jsx';
 import RightColumnOverview from './Overview-Components/RightColumnOverview.jsx';
 import ProductFeatureView from './Overview-Components/ProductFeatureView.jsx';
+import getProductInfo from './Overview-Components/RequestHandlers/getProductInfo.jsx';
+import getProductStyles from './Overview-Components/RequestHandlers/getProductStyles.jsx';
 
 function Overview({ productId }) {
   const [productInfo, setProductInfo] = useState({});
@@ -12,14 +13,12 @@ function Overview({ productId }) {
   const [fullscreenToggle, setFullscreenToggle] = useState(false);
 
   useEffect(() => {
-    axios.get(`/api/products/${productId}`)
-      .then((results) => {
-        setProductInfo(results.data);
-      });
-    axios.get(`/api/products/${productId}/styles`)
-      .then((results) => {
-        setProductStyles(results.data);
-      });
+    getProductInfo(productId, (results) => {
+      setProductInfo(results);
+    });
+    getProductStyles(productId, (results) => {
+      setProductStyles(results);
+    });
   }, [productId]);
 
   useEffect(() => {

@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack --watch",
     "start": "nodemon server/index.js",
-    "live": "livereload ./client/dist -w 1000 -d"
+    "live": "livereload ./client/dist -w 1000 -d",
+    "test": "jest --config ./jest.config.js --detectOpenHandles"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,7 @@
     "jest": "^27.1.1",
     "livereload": "^0.9.3",
     "nodemon": "^2.0.12",
+    "supertest": "^6.1.6",
     "webpack": "^5.52.0",
     "webpack-cli": "^4.8.0"
   },

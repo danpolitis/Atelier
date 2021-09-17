@@ -1,6 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
-import StarRating from '../Review-Components/StarRating.jsx';
+import StarRating from '../../Review-Components/StarRating.jsx';
 
 function ProductDetailView({ productInfo, selectedStyle, productId }) {
   let renderPrice;

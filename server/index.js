@@ -8,6 +8,8 @@ const path = require('path');
 const config = require('../config.js');
 
 const PUBLIC_DIR = path.resolve(__dirname, '..', 'client', 'dist');
+const BOOTSTRAPCSS_DIR = path.resolve(__dirname, '..', 'node_modules', 'bootstrap', 'dist', 'css');
+const BOOTSTRAPJS_DIR = path.resolve(__dirname, '..', 'node_modules', 'bootstrap', 'dist', 'js');
 
 app.use(cors());
 app.use(morgan('dev'));
@@ -15,6 +17,13 @@ app.use(express.static(PUBLIC_DIR));
 app.use(express.json());
 
 const PORT = 3000;
+
+app.use('/css', express.static(path.join(BOOTSTRAPCSS_DIR)));
+app.use('/js', express.static(path.join(BOOTSTRAPJS_DIR)));
+
+app.get('/test', (req, res) => {
+  res.json({ message: 'pass!' });
+});
 
 app.use('/api/*', (req, res) => {
   const { body, method, originalUrl } = req;
@@ -38,5 +47,7 @@ app.use('/api/*', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log('App is listening on http://localhost:3000');
+  console.log(`App is listening on http://localhost:${PORT}`);
 });
+
+module.exports = app;

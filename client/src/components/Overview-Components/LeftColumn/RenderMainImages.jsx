@@ -37,6 +37,7 @@ function RenderMainImages(props) {
         className={`d-block w-100 ${zoom ? 'zoomed' : ''}`}
         alt={altText}
         onMouseMove={zoom ? getMouseLocation : () => {}}
+        aria-hidden="true"
       />
     </div>
   );
