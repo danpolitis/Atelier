@@ -19,12 +19,14 @@ function RelatedItems({ productId, setProductId }) {
     .catch((err) => (console.log(err)));
 
   const getStyleData = (relatedId) => (axios.get(`/api/products/${relatedId}/styles`)
-    .then(({ data }) => (data.results[0].photos[0].url)))
+    .then(({ data }) => (data.results[0].photos[0].url || null)))
     .catch((err) => (console.log(err)));
 
   const getAllData = (idList, isRelatedData) => {
-    const dataPromises = idList.map((item) => (getItemData(item)));
-    const stylePromises = idList.map((item) => (getStyleData(item)));
+    const idSet = new Set(idList);
+    const idArray = Array.from(idSet);
+    const dataPromises = idArray.map((item) => (getItemData(item)));
+    const stylePromises = idArray.map((item) => (getStyleData(item)));
     (Promise.all(dataPromises))
       .then((results) => {
         if (isRelatedData === true) {
