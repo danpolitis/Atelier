@@ -209,7 +209,6 @@ const AddReview = (props) => {
                   type="text"
                   className="form-control"
                   maxLength="60"
-                  id="message-text"
                   required
                   name={ADD_SUMMARY}
                   placeholder="Example: Best purchase ever!"
@@ -226,7 +225,6 @@ const AddReview = (props) => {
                   className="form-control"
                   maxLength="1000"
                   minLength="50"
-                  id="message-text"
                   placeholder="Why did you like the product or not?"
                   name={ADD_BODY}
                   value={state.bodyText}
@@ -253,7 +251,6 @@ const AddReview = (props) => {
                   type="text"
                   className="form-control"
                   maxLength="60"
-                  id="message-text"
                   required
                   placeholder="Example: jackson11!"
                   value={state.addUsername}
@@ -274,7 +271,6 @@ const AddReview = (props) => {
                   type="email"
                   className="form-control"
                   maxLength="60"
-                  id="message-text"
                   required
                   placeholder="Example: jackson11@email.com"
                   value={state.addEmail}
@@ -291,7 +287,7 @@ const AddReview = (props) => {
                 <label htmlFor="exampleFormControlFile1">
                   <strong>Photo Upload</strong>
                   <br />
-                  <input onChange={handlePhotoChange} type="file" value={state.addPhotos} accept=".jpg,.png," className="form-control-file" id="exampleFormControlFile1" />
+                  <input onChange={handlePhotoChange} type="file" value={state.addPhotos} accept=".jpg,.png," className="form-control-file" />
                   <br />
                 </label>
                 <ImagePreview />
