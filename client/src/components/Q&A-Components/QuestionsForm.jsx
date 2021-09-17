@@ -50,26 +50,31 @@ const QuestionForm = ({ productId }) => {
           <div className="modal-body">
             <form onSubmit={handerSubmitQuestion}>
               <div className="mb-3">
-                <label htmlFor="recipient-name" className="col-form-label">Your username:</label>
+                <label htmlFor="recipient-name" className="col-form-label">What is your nickname?</label>
                 <input
                   type="text"
                   className="form-control"
                   id="recipient-name"
+                  placeholder="Example: jackson11!"
                   value={name}
                   onChange={(e) => { setName(e.target.value); }}
                   required
                 />
               </div>
+
               <div className="mb-3">
+
                 <label htmlFor="recipient-email" className="col-form-label">Your email:</label>
                 <input
                   type="email"
                   className="form-control"
                   id="recipient-email"
+                  placeholder="Example: jack@email.com"
                   value={email}
                   onChange={(e) => { setEmail(e.target.value); }}
                   required
                 />
+                <span>For authentication reasons, you will not be emailed</span>
               </div>
               <div className="mb-3">
                 <label htmlFor="message-text" className="col-form-label">Your question:</label>
@@ -84,7 +89,7 @@ const QuestionForm = ({ productId }) => {
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">Submit Question</button>
+                <button type="submit" className="btn btn-outline-dark" data-bs-dismiss="modal">Submit Question</button>
               </div>
             </form>
           </div>

@@ -8,6 +8,7 @@ const Question = ({ question }) => {
   const [currentAnswers, setCurrentAnswers] = useState(answers);
   const [helpful, setHelpful] = useState(question.question_helpfulness);
   const [voted, setVoted] = useState(false);
+  const [reported, setReported] = useState(false);
   const [showAnswerForm, setShowAnswerForm] = useState(false);
 
   const fetchAnswers = () => {
@@ -23,7 +24,7 @@ const Question = ({ question }) => {
 
   useEffect(() => {
     fetchAnswers();
-  }, []);
+  }, [question.question_id]);
 
   const handleHelpClick = () => {
     if (!voted) {
@@ -44,25 +45,47 @@ const Question = ({ question }) => {
     }
   };
 
+  const handleReport = () => {
+    setReported(true);
+    axios.put(
+      `api/qa/questions/${question.question_id}/report`,
+      {
+        reported: true,
+      },
+    )
+      .then(() => {
+
+      })
+      .catch((err) => {
+        Promise.reject(err);
+      });
+  };
+
   return (
     <>
       <div className="q-entry">
         <span className="q-body">{`Q: ${question.question_body}`}</span>
         <div>
           <span
-            className="helpful"
-            className="btn btn-outline-success"
+            className="helpful-review"
             onClick={handleHelpClick}
-          >
-            {voted ? `You and ${helpful} others thought this was helpful` : ` Helpful? Yes: ${helpful}`}
+          >Helpful? Yes:
+            {voted ? `(${helpful})` : `(${helpful})`}
           </span>
-          <span className="helpful-grid">{'  |  '}</span>
+          <small>{'  |  '}</small>
+          <span
+            className="helpful-review"
+            onClick={handleReport}
+          >
+          {reported ? 'Question was Reported ' : ' Report'}
+          </span>
+          <small>{'  |  '}</small>
           <span
             type="button"
             data-bs-toggle="modal"
             data-bs-target="#answerModal"
             onClick={() => { setShowAnswerForm(true); }}
-            className="btn btn-outline-success"
+            className="helpful-review"
           >
             Add Answer
           </span>

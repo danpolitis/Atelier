@@ -25,7 +25,7 @@ function QuestionsAndAnswers({ productId }) {
 
   useEffect(() => {
     fetchQuestions();
-  }, []);
+  }, [productId]);
 
   const handleMoreQuestions = () => {
     showMoreQuestions((more) => !more);
@@ -44,7 +44,7 @@ function QuestionsAndAnswers({ productId }) {
 
   return (
     <div className="container mb-5">
-      <span className="q-a-title">QUESTIONS & ANSWERS</span>
+      <h5>QUESTIONS & ANSWERS</h5>
       <SearchQuestion
         handleSearch={handleSearch}
       />
@@ -61,7 +61,7 @@ function QuestionsAndAnswers({ productId }) {
       />
       <button
         type="button"
-        className="btn btn-primary more-answers-button"
+        className="btn btn-outline-dark more-answers-button"
         onClick={handleMoreQuestions}
       >
         {moreQuestions ? 'HIDE QUESTIONS' : 'MORE ANSWERED QUESTIONS'}
@@ -69,7 +69,7 @@ function QuestionsAndAnswers({ productId }) {
 
       <button
         type="button"
-        className="btn btn-primary add-a-question-button"
+        className="btn btn-outline-dark add-a-question-button"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
         onClick={() => { setQuestionForm(true); }}

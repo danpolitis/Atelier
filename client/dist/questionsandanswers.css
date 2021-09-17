@@ -44,11 +44,13 @@
 .search-bar {
   width: 500px;
   height: 28px;
+  margin: 1rem .125rem;
 }
 
-.add-answer:hover {
+.add-answer {
   cursor: pointer;
   font-weight: bold;
+  text-decoration: underline overline;
 }
 
 .helpful:hover {
@@ -57,7 +59,21 @@
   font-weight: bold;
 }
 
+.helpful-review:hover{
+  font-size: .7em;
+  cursor: pointer;
+  text-decoration: underline;
+}
 
+.report{
+  font-size: .7em;
+  cursor: pointer;
+  border-bottom: solid 1px black;
+}
+
+.helpful-review-yes{
+  cursor: pointer;
+}
 .add-a-question-button {
   margin: .25rem .125rem;
 }
@@ -71,3 +87,29 @@
   line-height: 1.5;
   color: #198754
 }
+
+.seller {
+  font-weight: bold;
+}
+
+.Ahelp-report {
+  padding-left: 2.5%;
+  font-size: 14px;
+}
+
+.a-bullet {
+  font-weight: bold;
+}
+
+/* .search-form {
+  position: relative;
+  display: flex;
+}
+
+.search-icon {
+  position: absolute;
+  top: 6px;
+  left: 475px;
+  width: 14px;
+  color: rgb(38, 50, 56);
+} */
