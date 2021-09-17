@@ -24,16 +24,19 @@ function StyleSelectorView({ productStyles, selectedStyle, setSelectedStyle }) {
 
   // CONDITIONAL RENDERING
   if (selectedStyleId) {
-    renderStyleThumbnails = _.map(productStyles.results, (style) => (
-      <StyleThumbnails
-        key={style.style_id}
-        styleId={style.style_id}
-        photoUrl={style.photos[0].thumbnail_url}
-        altText={style.name}
-        setSelectedStyleId={setSelectedStyleId}
-        selectedStyleId={selectedStyleId}
-      />
-    ));
+    renderStyleThumbnails = _.map(productStyles.results, (style) => {
+      const displayUrl = style.photos[0].thumbnail_url === null ? 'No-Image-Placeholder.svg' : style.photos[0].thumbnail_url;
+      return (
+        <StyleThumbnails
+          key={style.style_id}
+          styleId={style.style_id}
+          photoUrl={displayUrl}
+          altText={style.name}
+          setSelectedStyleId={setSelectedStyleId}
+          selectedStyleId={selectedStyleId}
+        />
+      );
+    });
   } else {
     renderStyleThumbnails = '';
   }
@@ -54,16 +57,20 @@ function StyleSelectorView({ productStyles, selectedStyle, setSelectedStyle }) {
 }
 
 // Render thumbnail helper function
-function StyleThumbnails({
-  photoUrl, altText, styleId, setSelectedStyleId, selectedStyleId,
-}) {
+function StyleThumbnails(props) {
+  const {
+    photoUrl, altText, styleId, setSelectedStyleId, selectedStyleId,
+  } = props;
+
+  const displayUrl = photoUrl === null ? 'No-Image-Placeholder.svg' : photoUrl;
+
   function handleStyleChange() {
     setSelectedStyleId(styleId);
   }
 
   return (
     <button type="button" onClick={handleStyleChange} className="mb-4">
-      <img src={photoUrl} alt={altText} />
+      <img src={displayUrl} alt={altText} />
       {styleId === selectedStyleId ? <FaCheckCircle color="green" size="15px" /> : ''}
     </button>
   );

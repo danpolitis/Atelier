@@ -56,7 +56,7 @@ function Overview({ productId }) {
       </div>
       <div className="container mb-5">
         {/* BOTTOM ROW Product info row */}
-        <ProductFeatureView productInfo={productInfo} />
+        <ProductFeatureView productInfo={productInfo} selectedStyle={selectedStyle} />
       </div>
     </>
   );

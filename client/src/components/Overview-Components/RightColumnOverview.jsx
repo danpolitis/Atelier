@@ -8,7 +8,7 @@ function RightColumnOverview({
   productStyles, productInfo, selectedStyle, setSelectedStyle, productId, fullscreenToggle,
 }) {
   return (
-    <div className={`col-lg-4 ${fullscreenToggle ? 'd-none' : ''}`}>
+    <div className={`col-lg-4 px-5 ${fullscreenToggle ? 'd-none' : ''}`}>
       <ProductDetailView
         productInfo={productInfo}
         selectedStyle={selectedStyle}

@@ -95,12 +95,8 @@ function AddtoCartView({ selectedStyle }) {
         <div className="col-8">
           <div className="input-group mb-3">
             <select onChange={handleSizeSelect} id="sizeSelect" className="form-select w-100 p-3 border border-dark" defaultValue="DEFAULT">
-              {/* <div className="dropdown"> */}
               {renderDefaultSizeOption}
-              {/* <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1"> */}
               {renderSizes}
-              {/* </ul> */}
-              {/* </div> */}
             </select>
           </div>
         </div>
@@ -115,10 +111,10 @@ function AddtoCartView({ selectedStyle }) {
       </div>
       {/* Add to Cart and Favorite */}
       <div className="row">
-        <div className={`col-10 ${validSkus === [] ? 'd-none' : ''}`}>
+        <div className={`col-9 ${validSkus.length === 0 ? 'd-none' : ''}`}>
           <button onClick={handleAddCart} type="button" className="btn btn-outline-dark w-100 p-3">Add to Cart</button>
         </div>
-        <div className="col-2">
+        <div className="col-3">
           <button type="button" className="btn btn-outline-dark w-100 p-3"><BsStar /></button>
         </div>
       </div>

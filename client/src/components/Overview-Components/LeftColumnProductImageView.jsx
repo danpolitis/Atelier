@@ -32,18 +32,21 @@ function LeftColumnProductImageView({ selectedStyle, fullscreenToggle, setFullsc
   }
 
   if (selectedStyle.photos) {
-    renderMainImages = selectedStyle.photos.map((photo, idx) => (
-      <RenderMainImages
-        key={idx}
-        idx={idx}
-        photoUrl={photo.url}
-        altText={selectedStyle.name}
-        setFullscreenToggle={setFullscreenToggle}
-        fullscreenToggle={fullscreenToggle}
-        zoom={zoom}
-        setZoom={setZoom}
-      />
-    ));
+    renderMainImages = selectedStyle.photos.map((photo, idx) => {
+      const displayUrl = photo.url === null ? 'No-Image-Placeholder.svg' : photo.url;
+      return (
+        <RenderMainImages
+          key={idx}
+          idx={idx}
+          photoUrl={displayUrl}
+          altText={selectedStyle.name}
+          setFullscreenToggle={setFullscreenToggle}
+          fullscreenToggle={fullscreenToggle}
+          zoom={zoom}
+          setZoom={setZoom}
+        />
+      );
+    });
   } else {
     renderMainImages = '';
   }
@@ -116,9 +119,10 @@ function LeftColumnProductImageView({ selectedStyle, fullscreenToggle, setFullsc
 // Helper Render Functions
 
 function MainThumbnails({ photoUrl, altText, idx, display }) {
+  const displayUrl = photoUrl === null ? 'No-Image-Placeholder.svg' : photoUrl;
   return (
     <img
-      src={photoUrl}
+      src={displayUrl}
       data-imgthumb={idx}
       className="d-block w-100"
       alt={altText}
@@ -131,7 +135,7 @@ function MainThumbnails({ photoUrl, altText, idx, display }) {
   );
 }
 
-function MainIndicators({ photoUrl, altText, idx }) {
+function MainIndicators({ idx }) {
   return (
     <button
       type="button"

@@ -18,7 +18,7 @@ function RenderMainImages(props) {
 
   function getMouseLocation(e) {
     const posX = e.clientX;
-    const posY = e.clientY - 79;
+    const posY = e.clientY - 80;
     const winX = e.target.offsetWidth;
     const winY = e.target.offsetHeight;
     const picX = e.target.naturalWidth * 2.5;
