@@ -158,7 +158,6 @@ const AddReview = (props) => {
                         checked={(i + 1) === (state.fit || state.size)}
                         className="form-check-input"
                         type="radio"
-                        id={`inlineRadio${i + 1}`}
                         name={characteristics.Fit ? ADD_FIT : ADD_SIZE}
                         value={i + 1}
                       />
@@ -177,7 +176,6 @@ const AddReview = (props) => {
                         className="form-check-input"
                         checked={(i + 1) === (state.length || state.width)}
                         type="radio"
-                        id={`inlineRadio${i + 1}`}
                         name={characteristics.Length ? ADD_LENGTH : ADD_WIDTH}
                         value={i + 1}
                       />
@@ -189,7 +187,7 @@ const AddReview = (props) => {
                   <div className="radio-label-vertical-wrapper" key={i + 1}>
                     <label className="radio-label-vertical" htmlFor={`inlineRadio${i + 1}`}>
                       {comfortDesc(i + 1)}
-                      <input onChange={handleChange} className="form-check-input" checked={(i + 1) === state.comfort} type="radio" id={`inlineRadio${i + 1}`} name={ADD_COMFORT} value={i + 1} />
+                      <input onChange={handleChange} className="form-check-input" checked={(i + 1) === state.comfort} type="radio" name={ADD_COMFORT} value={i + 1} />
                     </label>
                   </div>
                 ))}
@@ -198,7 +196,7 @@ const AddReview = (props) => {
                   <div className="radio-label-vertical-wrapper" key={i + 1}>
                     <label className="radio-label-vertical" htmlFor={`inlineRadio${i + 1}`}>
                       {qualityDesc(i + 1)}
-                      <input onChange={handleChange} className="form-check-input" type="radio" checked={(i + 1) === state.quality} id={`inlineRadio${i + 1}`} name={ADD_QUALITY} value={i + 1} />
+                      <input onChange={handleChange} className="form-check-input" type="radio" checked={(i + 1) === state.quality} name={ADD_QUALITY} value={i + 1} />
                     </label>
                   </div>
                 ))}
