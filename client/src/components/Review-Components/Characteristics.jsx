@@ -9,8 +9,16 @@ const Characteristics = ({ productId }) => {
   const getMetaData = (id) => {
     axios.get(`/api/reviews/meta?product_id=${id}`)
       .then(({ data }) => {
-        setComfort(data.characteristics.Comfort.value);
-        setSize(data.characteristics.Fit.value);
+        if (data.characteristics.Comfort.value === null) {
+          setComfort(0);
+        } else {
+          setComfort(data.characteristics.Comfort.value);
+        }
+        if (data.characteristics.Fit.value === null || data.characteristics.Size.value === null) {
+          setSize(0);
+        } else {
+          setSize(data.characteristics.Fit.value || data.characteristics.Size.value);
+        }
       });
   };
 

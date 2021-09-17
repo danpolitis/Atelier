@@ -5,17 +5,8 @@ import Star from './Review-Components/Star.jsx';
 import Characteristics from './Review-Components/Characteristics.jsx';
 import ReviewsList from './Review-Components/ReviewsList.jsx';
 import {
-  reviewReducers, FETCH_SUCCESS, GET_RECOMMEND, ERROR,
+  reviewReducers, initialState, FETCH_SUCCESS, GET_RECOMMEND, ERROR, GET_PRODUCT_INFO,
 } from './Review-Components/Review-Reducers/reducers.jsx';
-
-const initialState = {
-  ratings: {},
-  average: 5,
-  recommend: 0,
-  totalRatings: 0,
-  base: 0,
-  isError: false,
-};
 
 function Reviews({ productId }) {
   const [state, dispatch] = useReducer(reviewReducers, initialState);
@@ -23,16 +14,32 @@ function Reviews({ productId }) {
   const getMetaData = (id) => {
     axios.get(`/api/reviews/meta?product_id=${id}`)
       .then(({ data }) => {
-        dispatch({ type: GET_RECOMMEND, payload: data.recommended });
-        dispatch({ type: FETCH_SUCCESS, payload: data });
+        if (Object.keys(data.ratings).length === 0) {
+          dispatch({ type: ERROR });
+        } else {
+          dispatch({ type: GET_RECOMMEND, payload: data.recommended });
+          dispatch({ type: FETCH_SUCCESS, payload: data });
+        }
       })
       .catch((err) => {
+        console.log(err);
+        dispatch({ type: ERROR });
+      });
+  };
+  const getProductInfo = (id) => {
+    axios.get(`/api/products/${id}`)
+      .then(({ data }) => {
+        dispatch({ type: GET_PRODUCT_INFO, payload: data });
+      })
+      .catch((err) => {
+        console.log(err);
         dispatch({ type: ERROR });
       });
   };
 
   useEffect(() => {
     getMetaData(productId);
+    getProductInfo(productId);
   }, [productId]);
   return (
     <div className="container mb-5">
@@ -52,7 +59,14 @@ function Reviews({ productId }) {
             <Characteristics productId={productId} />
           </div>
           <div className="col-md-8">
-            <ReviewsList totalRatings={state.totalRatings} productId={productId} />
+            <ReviewsList
+              characteristics={state.characteristics}
+              totalRatings={state.totalRatings}
+              productId={productId}
+              productName={state.productInfo.name}
+              sizefit={state.characteristics.Fit || state.characteristics.Size}
+              widthlength={state.characteristics.Length || state.characteristics.Width}
+            />
           </div>
         </div>
       </div>

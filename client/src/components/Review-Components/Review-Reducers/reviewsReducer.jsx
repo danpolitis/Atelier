@@ -2,7 +2,7 @@ import React from 'react';
 export const FETCH_SUCCESS = 'FETCH_SUCESS';
 export const IS_LOADING = 'IS_LOADING';
 export const SET_COUNT = 'SET_COUNT';
-export const SORT_CLICK = 'SORT_CLICK';
+export const MODAL_CLICK = 'MODAL_CLICK';
 export const SELECT_CHANGE = 'SELECT_CHANGE';
 
 export const reviewListReducer = (state, action) => {
@@ -23,10 +23,10 @@ export const reviewListReducer = (state, action) => {
         ...state,
         count: state.count + 2,
       };
-    case SORT_CLICK:
+    case MODAL_CLICK:
       return {
         ...state,
-        sortClick: !state.sortClick,
+        modalClick: !state.modalClick,
       };
     case SELECT_CHANGE:
       return {
@@ -36,4 +36,12 @@ export const reviewListReducer = (state, action) => {
     default:
       return state;
   }
+};
+
+export const initialState = {
+  reviews: [],
+  count: 2,
+  isLoading: false,
+  modalClick: false,
+  selected: 'relevant',
 };

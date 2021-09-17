@@ -8,7 +8,7 @@ import QuestionsAndAnswers from './QuestionsAndAnswers.jsx';
 import Reviews from './Reviews.jsx';
 
 function App() {
-  const [productId, setProductId] = useState(42366);
+  const [productId, setProductId] = useState(42368);
   return (
     <>
       <Navbar />

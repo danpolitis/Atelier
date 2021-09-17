@@ -1,5 +1,5 @@
 .progress-bar{
-  background-color: black;
+  background-color: #065535;
 }
 
 .progress-label{
@@ -44,7 +44,7 @@ div.star-container{
 }
 
 .characteristics{
-  width: 75%;
+  width: 70%;
 }
 
 .characteristics-label{
@@ -70,7 +70,7 @@ input[type="range"] {
   -webkit-appearance: none;
   display: block;
   margin: 0;
-  width: 75%;
+  width: 70%;
   background: transparent;
 }
 
@@ -85,7 +85,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 input[type=range]::-webkit-slider-runnable-track {
-  width: 100%;
+  width: 70%;
   height: 0.5em;
   cursor: pointer;
   background: #e9ecef;
@@ -148,4 +148,82 @@ select.styled-select:focus {
   border:none;
   box-shadow:none;
   border-bottom: 1px solid black;
+}
+
+
+.radio-label-vertical-wrapper {
+  padding-bottom: 13px;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.radio-label-vertical-wrapper:before {
+  content: ' ';
+  display: block;
+  width: 100%;
+  height: 30px;
+  position: absolute;
+  bottom: 0;
+}
+
+.radio-label-vertical-wrapper label:not(.radio-label-vertical) {
+  display: block;
+  width: 100%;
+}
+
+.radio-label-vertical {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.radio-label-vertical input {
+  position: absolute;
+  top: 28px;
+  left: 50%;
+  margin-left: -6px;
+  display: block;
+  cursor: pointer;
+}
+
+.radio-characteristic-labels{
+  position:relative;
+  padding-top: 10px;
+  padding-left: 20px;
+  text-decoration: underline;
+}
+
+.about-product{
+  margin: 15px;
+}
+
+.error-message{
+  color: red;
+  margin-bottom: 0;
+}
+
+.form-group{
+  margin-bottom: 20px;
+}
+
+.validate-message-list{
+  list-style: none;
+  color: red;
+}
+
+.star-rating-form{
+  align-items:stretch;
+  margin-bottom: 16px;
+}
+
+.select-rating-span{
+  padding-left: 25px;
+  vertical-align: middle;
+}
+
+.end-page{
+  margin-top: 20px;
 }
