@@ -65,6 +65,8 @@
   text-decoration: underline;
 }
 
+
+
 .report{
   font-size: .7em;
   cursor: pointer;
@@ -94,13 +96,17 @@
 
 .Ahelp-report {
   padding-left: 2.5%;
-  font-size: 14px;
+  font-size: .7em;
 }
 
 .a-bullet {
   font-weight: bold;
 }
 
+.answer-helpful {
+  cursor: pointer;
+  text-decoration: underline;
+}
 /* .search-form {
   position: relative;
   display: flex;

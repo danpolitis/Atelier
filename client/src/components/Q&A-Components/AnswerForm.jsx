@@ -37,23 +37,22 @@ const AnswerForm = ({ questionId, questionBody }) => {
   };
 
   return (
-    <div className="modal" id="answerModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div className="modal" id="answerModal" tabIndex="-1" aria-labelledby="answerModalLabel" aria-hidden="true">
       <div className="modal-dialog">
         <div className="modal-content">
 
           <div className="modal-header">
-            <h5 className="modal-title" id="exampleModalLabel">Submit Your Answer</h5>
+            <h5 className="modal-title" id="answerModalLabel">Submit Your Answer</h5>
             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
           </div>
 
           <div className="modal-body">
             <form onSubmit={handerSubmitAnswer}>
               <div className="mb-3">
-                <label htmlFor="recipient-name" className="col-form-label">What is your nickname?</label>
+                <label className="col-form-label">What is your nickname?</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="recipient-name"
                   placeholder="Example: jack543!"
                   value={name}
                   onChange={(e) => { setName(e.target.value); }}
@@ -61,11 +60,10 @@ const AnswerForm = ({ questionId, questionBody }) => {
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="recipient-email" className="col-form-label">Your email:</label>
+                <label className="col-form-label">Your email:</label>
                 <input
                   type="email"
                   className="form-control"
-                  id="recipient-email"
                   placeholder="Example: jack@email.com"
                   value={email}
                   onChange={(e) => { setEmail(e.target.value); }}
@@ -73,11 +71,10 @@ const AnswerForm = ({ questionId, questionBody }) => {
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="message-text" className="col-form-label">Your answer:</label>
+                <label className="col-form-label">Your answer:</label>
                 <textarea
                   type="text"
                   className="form-control"
-                  id="message-text"
                   value={body}
                   onChange={(e) => { setBody(e.target.value); }}
                   required

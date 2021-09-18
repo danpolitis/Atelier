@@ -59,14 +59,14 @@ const Answer = ({ answer }) => {
         )}`}
         <span> </span>
         <span
-          className="helpful-review"
+          className="answer-helpful"
           onClick={handleHelpClick}
           >Helpful? Yes:
           {voted ? `(${helpful})` : `(${helpful})`}
         </span>
         <small>{'  |  '}</small>
         <span
-          className="helpful-review"
+          className="answer-helpful"
           onClick={handleReport}
           >
           {reported ? 'Answer was Reported' : 'Report'}

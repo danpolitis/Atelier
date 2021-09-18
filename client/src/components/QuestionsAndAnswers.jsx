@@ -71,7 +71,7 @@ function QuestionsAndAnswers({ productId }) {
         type="button"
         className="btn btn-outline-dark add-a-question-button"
         data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
+        data-bs-target="#questionModal"
         onClick={() => { setQuestionForm(true); }}
       >
         ADD A QUESTION +
