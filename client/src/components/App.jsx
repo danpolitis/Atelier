@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import { ProductContext } from './ProductContext.jsx';
 
 import Navbar from './Navbar.jsx';
 import Overview from './Overview.jsx';
@@ -7,7 +8,8 @@ import QuestionsAndAnswers from './QuestionsAndAnswers.jsx';
 import Reviews from './Reviews.jsx';
 
 function App() {
-  const [productId, setProductId] = useState(42368);
+  const { productId, setProductId } = useContext(ProductContext);
+
   return (
     <>
       <Navbar />

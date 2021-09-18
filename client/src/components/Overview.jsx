@@ -1,25 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { ProductContext } from './ProductContext.jsx';
 
 import LeftColumnProductImageView from './Overview-Components/LeftColumnProductImageView.jsx';
 import RightColumnOverview from './Overview-Components/RightColumnOverview.jsx';
 import ProductFeatureView from './Overview-Components/ProductFeatureView.jsx';
-import getProductInfo from './Overview-Components/RequestHandlers/getProductInfo.jsx';
-import getProductStyles from './Overview-Components/RequestHandlers/getProductStyles.jsx';
 
 function Overview({ productId }) {
-  const [productInfo, setProductInfo] = useState({});
-  const [productStyles, setProductStyles] = useState({});
+  const { productInfo, productStyles } = useContext(ProductContext);
+
   const [selectedStyle, setSelectedStyle] = useState({});
   const [fullscreenToggle, setFullscreenToggle] = useState(false);
-
-  useEffect(() => {
-    getProductInfo(productId, (results) => {
-      setProductInfo(results);
-    });
-    getProductStyles(productId, (results) => {
-      setProductStyles(results);
-    });
-  }, [productId]);
 
   useEffect(() => {
     const styleList = productStyles.results;
@@ -36,13 +26,11 @@ function Overview({ productId }) {
     <>
       <div className="container-fluid mb-5 px-0">
         <div className="row me-0">
-          {/* LEFT COLUMN Product image carousel */}
           <LeftColumnProductImageView
             selectedStyle={selectedStyle}
             fullscreenToggle={fullscreenToggle}
             setFullscreenToggle={setFullscreenToggle}
           />
-          {/* RIGHT COLUMN Product Information side */}
           <RightColumnOverview
             productStyles={productStyles}
             productInfo={productInfo}
@@ -54,7 +42,6 @@ function Overview({ productId }) {
         </div>
       </div>
       <div className="container mb-5">
-        {/* BOTTOM ROW Product info row */}
         <ProductFeatureView productInfo={productInfo} selectedStyle={selectedStyle} />
       </div>
     </>
