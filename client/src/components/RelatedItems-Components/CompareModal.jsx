@@ -70,7 +70,7 @@ const CompareModal = ({ product, currentFeatures }) => {
             <Row>
               <Col style={{ fontWeight: 'bold', textDecoration: 'underline' }}>This Product</Col>
               <Col style={{ fontWeight: 'bold', textDecoration: 'underline' }}>Feature</Col>
-              <Col style={{ fontWeight: 'bold', textDecoration: 'underline' }}>Current Product</Col>
+              <Col style={{ fontWeight: 'bold', textDecoration: 'underline' }}>{product.name}</Col>
             </Row>
             {mergedFeatureList.map((feature) => (
               <Row key={feature.feature}>
