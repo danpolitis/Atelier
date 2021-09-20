@@ -1,5 +1,5 @@
 const supertest = require('supertest');
-const app = require('../server');
+const app = require('../server/app.js');
 
 describe('int::app', () => {
   let request = null;
@@ -38,10 +38,13 @@ describe('int::app', () => {
   });
 
   it('Gets the reviews and metadata', async () => {
+    await request.get('/api/reviews?product_id=42366')
+      .expect(200)
+      .then((res) => {
+        expect(Array.isArray(res.body.results)).toBeTruthy();
+      });
   });
 
   it('Gets the questions', async () => {
   });
-
-
 });
