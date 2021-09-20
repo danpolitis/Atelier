@@ -1,8 +1,6 @@
-import React from 'react';
 export const FETCH_SUCCESS = 'FETCH_SUCESS';
 export const GET_RECOMMEND = 'GET_RECOMMEND';
 export const ERROR = 'ERROR';
-export const GET_PRODUCT_INFO = 'GET_PRODUCT_INFO';
 export const GET_CHARACTERISTICS = 'GET_CHARACTERISTICS';
 
 export const reviewReducers = (state, action) => {
@@ -38,11 +36,6 @@ export const reviewReducers = (state, action) => {
         ...state,
         characteristics: action.payload.characteristics,
       };
-    case GET_PRODUCT_INFO:
-      return {
-        ...state,
-        productInfo: action.payload,
-      };
     default:
       return state;
   }
@@ -56,5 +49,4 @@ export const initialState = {
   base: 0,
   isError: false,
   characteristics: {},
-  productInfo: {},
 };

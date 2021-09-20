@@ -5,6 +5,7 @@ export const SELECT_REC = 'SELECT_REC';
 export const ADD_USER = 'ADD_USER';
 export const ADD_EMAIL = 'ADD_EMAIL';
 export const ADD_PHOTOS = 'ADD_PHOTOS';
+export const DELETE_PHOTOS = 'DELETE_PHOTOS';
 export const ADD_LENGTH = 'ADD_LENGTH';
 export const ADD_COMFORT = 'ADD_COMFORT';
 export const ADD_QUALITY = 'ADD_QUALITY';
@@ -49,6 +50,11 @@ export const reviewFormReducer = (state, action) => {
       return {
         ...state,
         addPhotos: [...state.addPhotos, action.payload],
+      };
+    case DELETE_PHOTOS:
+      return {
+        ...state,
+        addPhotos: [...state.addPhotos.filter((photo) => photo !== action.payload)],
       };
     case ADD_LENGTH:
       return {

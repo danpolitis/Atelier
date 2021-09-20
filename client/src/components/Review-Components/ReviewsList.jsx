@@ -1,15 +1,21 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect, useState } from 'react';
 import axios from 'axios';
+import Form from 'react-bootstrap/Form';
+import FormControl from 'react-bootstrap/FormControl';
+import Button from 'react-bootstrap/Button';
 import ReviewListEntry from './ReviewListEntry.jsx';
-import AddReview from './AddReview.jsx';
+import AddReview from './ReviewForm/AddReview.jsx';
 import {
-  reviewListReducer, initialState, FETCH_SUCCESS, IS_LOADING, SET_COUNT, MODAL_CLICK, SELECT_CHANGE,
+  reviewListReducer, initialState, FETCH_SUCCESS, IS_LOADING, SET_COUNT,
+  MODAL_CLICK, SELECT_CHANGE, SEARCH_RESULT,
 } from './Review-Reducers/reviewsReducer.jsx';
 
-const ReviewsList = ({
-  productId, totalRatings, characteristics, sizefit, widthlength, productName,
-}) => {
+const ReviewsList = (props) => {
   const [state, dispatch] = useReducer(reviewListReducer, initialState);
+  const [searchText, setsearchText] = useState('');
+  const {
+    productId, totalRatings, characteristics, sizefit, widthlength,
+  } = props;
 
   const getReviews = (id, count, selected) => {
     axios.get(`/api/reviews?product_id=${id}&sort=${selected}&count=${count}`)
@@ -22,9 +28,21 @@ const ReviewsList = ({
       });
   };
 
-  const handleChange = (e) => {
-    dispatch({ type: SELECT_CHANGE, payload: e.target.value });
-  };
+  const searchBar = () => (
+    <div className="review-search">
+      <Form className="d-flex">
+        <FormControl
+          type="search"
+          placeholder="Search"
+          className="mr-2"
+          aria-label="Search"
+          value={searchText}
+          onChange={(e) => setsearchText(e.target.value)}
+        />
+        <Button variant="outline-dark">Search</Button>
+      </Form>
+    </div>
+  );
 
   useEffect(() => {
     getReviews(productId, state.count, state.selected);
@@ -36,7 +54,7 @@ const ReviewsList = ({
         <p className="review-sort-font">
           {`${totalRatings} reviews, sorted by`}
         </p>
-        <form onChange={handleChange}>
+        <form onChange={(e) => { dispatch({ type: SELECT_CHANGE, payload: e.target.value }); }}>
           <div className="form-group">
             <select className="styled-select">
               <option value="relevant">relevance</option>
@@ -46,6 +64,7 @@ const ReviewsList = ({
           </div>
         </form>
       </div>
+      {searchBar()}
       <div>
         {state.reviews.map((review) => (
           <ReviewListEntry
@@ -89,10 +108,12 @@ const ReviewsList = ({
       </div>
       <AddReview
         productId={productId}
-        productName={productName}
+        getReviews={getReviews}
         characteristics={characteristics}
         sizefit={sizefit}
         widthlength={widthlength}
+        selected={state.selected}
+        count={state.count}
       />
     </>
   );

@@ -116,3 +116,25 @@ export const lenDesc = (index) => {
       break;
   }
 };
+
+// const submitMessage = () => {
+//   if (submitClick === true && errorMessage === false) {
+//     return (
+//       <>
+//         <p>
+//           Review Submitted!
+//           {' '}
+//           <i className="bi bi-check-circle" style={{ fontSize: '24px' }} />
+//         </p>
+//       </>
+//     );
+//   }
+//   if (submitClick === false && errorMessage === true) {
+//     return (
+//       <>
+//         <p className="error-message"><em><small>Please Fill out Required:</small></em></p>
+//         <ValidationMessage state={state} />
+//       </>
+//     );
+//   }
+// };

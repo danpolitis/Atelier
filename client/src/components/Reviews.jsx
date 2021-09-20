@@ -1,16 +1,17 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import axios from 'axios';
 import RatingBar from './Review-Components/RatingBar.jsx';
 import Star from './Review-Components/Star.jsx';
 import Characteristics from './Review-Components/Characteristics.jsx';
 import ReviewsList from './Review-Components/ReviewsList.jsx';
 import {
-  reviewReducers, initialState, FETCH_SUCCESS, GET_RECOMMEND, ERROR,
-  GET_PRODUCT_INFO, GET_CHARACTERISTICS,
+  reviewReducers, initialState, FETCH_SUCCESS, GET_RECOMMEND, ERROR, GET_CHARACTERISTICS,
 } from './Review-Components/Review-Reducers/reducers.jsx';
 
 function Reviews({ productId }) {
   const [state, dispatch] = useReducer(reviewReducers, initialState);
+  const [size, setSize] = useState(0);
+  const [comfort, setComfort] = useState(0);
 
   const getMetaData = (id) => {
     axios.get(`/api/reviews/meta?product_id=${id}`)
@@ -24,16 +25,17 @@ function Reviews({ productId }) {
           dispatch({ type: GET_CHARACTERISTICS, payload: data });
           dispatch({ type: GET_RECOMMEND, payload: data.recommended });
         }
-      })
-      .catch((err) => {
-        console.log(err);
-        dispatch({ type: ERROR });
-      });
-  };
-  const getProductInfo = (id) => {
-    axios.get(`/api/products/${id}`)
-      .then(({ data }) => {
-        dispatch({ type: GET_PRODUCT_INFO, payload: data });
+        if (data.characteristics.Comfort.value === null) {
+          setComfort(0);
+        } else {
+          setComfort(data.characteristics.Comfort.value);
+        }
+        if ((!data.characteristics.Fit && !data.characteristics.Size.value) ||
+        (!data.characteristics.Size && !data.characteristics.Fit.value)) {
+          setSize(0);
+        } else {
+          setSize(data.characteristics.Fit.value || data.characteristics.Size.value);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -43,7 +45,6 @@ function Reviews({ productId }) {
 
   useEffect(() => {
     getMetaData(productId);
-    getProductInfo(productId);
   }, [productId]);
   return (
     <div className="container mb-5">
@@ -60,14 +61,13 @@ function Reviews({ productId }) {
               % of reviews recommend this product
             </p>
             <RatingBar total={state.totalRatings} ratings={state.ratings} />
-            <Characteristics productId={productId} />
+            <Characteristics size={size} comfort={comfort} productId={productId} />
           </div>
           <div className="col-md-8">
             <ReviewsList
               characteristics={state.characteristics}
               totalRatings={state.totalRatings}
               productId={productId}
-              productName={state.productInfo.name}
               sizefit={state.characteristics.Fit || state.characteristics.Size}
               widthlength={state.characteristics.Length || state.characteristics.Width}
             />

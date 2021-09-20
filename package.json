@@ -54,6 +54,7 @@
     "react-modal": "^3.14.3",
     "react-share": "^4.4.0",
     "react-star-ratings": "^2.3.0",
-    "underscore": "^1.13.1"
+    "underscore": "^1.13.1",
+    "uniqid": "^5.4.0"
   }
 }

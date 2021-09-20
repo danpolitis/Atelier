@@ -4,56 +4,61 @@ import axios from 'axios';
 
 const ReviewListEntry = (props) => {
   const [formatDate, setDate] = useState('January 1, 2019');
+  const {
+    productId, count, getReviews, review, selected,
+  } = props;
 
   const dateFormat = (date) => new Promise((resolve) => {
     resolve(date);
   })
     .then((result) => {
-      const date = new Date(result.substring(0, 10));
       const options = { year: 'numeric', month: 'long', day: 'numeric' };
-      setDate(date.toLocaleDateString('en-US', options));
+      const splitDate = result.substring(0, 10);
+      const newDate = new Date(splitDate);
+      const correctDateFormat = newDate.toLocaleDateString('en-US', options);
+      setDate(correctDateFormat);
     });
 
   const helpfulRequest = () => {
-    axios.put(`/api/reviews/${props.review.review_id}/helpful`)
+    axios.put(`/api/reviews/${review.review_id}/helpful`)
       .then(() => {
+        getReviews(productId, count, selected);
         console.log('Helpful Updated');
-        props.getReviews(props.productId, props.count);
       });
   };
 
   const reportRequest = () => {
-    axios.put(`/api/reviews/${props.review.review_id}/report`)
+    axios.put(`/api/reviews/${review.review_id}/report`)
       .then(() => {
+        getReviews(productId, count, selected);
         console.log('Review reported');
-        props.getReviews(props.productId, props.count);
       });
   };
 
   useEffect(() => {
-    dateFormat(props.review.date);
+    dateFormat(review.date);
   }, []);
 
   return (
     <div className="review-container">
       <div className="d-flex justify-content-between">
-        <StarRatings starSpacing="2px" rating={props.review.rating} starRatedColor="rgb(0,0,0)" numberOfStars={5} starDimension="15px" />
-        <p className="username"><small>{`${props.review.reviewer_name}, ${formatDate}`}</small></p>
+        <StarRatings starSpacing="2px" rating={review.rating} starRatedColor="rgb(0,0,0)" numberOfStars={5} starDimension="15px" />
+        <p className="username"><small>{`${review.reviewer_name}, ${formatDate}`}</small></p>
       </div>
       <div>
-        {props.review.summary.length > 60
+        {review.summary.length > 60
           ? (
             <div>
-              <p><strong>{`${props.review.summary.substring(0, 60)}...`}</strong></p>
-              <p><small>{props.review.summary.substring(60)}</small></p>
+              <p><strong>{`${review.summary.substring(0, 60)}...`}</strong></p>
+              <p><small>{review.summary.substring(60)}</small></p>
             </div>
-          ) : <p><strong>{props.review.summary}</strong></p>}
+          ) : <p><strong>{review.summary}</strong></p>}
       </div>
       <div>
-        <p><small>{props.review.body}</small></p>
+        <p><small>{review.body}</small></p>
       </div>
       <div>
-        {props.review.recommend
+        {review.recommend
           ? (
             <div>
               <p>
@@ -64,11 +69,11 @@ const ReviewListEntry = (props) => {
           ) : <div /> }
       </div>
       <div>
-        {(props.review.response !== '' && props.review.response !== null)
+        {(review.response)
           ? (
             <div>
               <p>Resonse: </p>
-              <p>{props.review.response}</p>
+              <p>{review.response}</p>
             </div>
           ) : <div /> }
       </div>
@@ -80,7 +85,7 @@ const ReviewListEntry = (props) => {
             <u onClick={helpfulRequest} className="helpful-review-yes">Yes</u>
             {' '}
             (
-            {props.review.helpfulness}
+            {review.helpfulness}
             ) |
             {' '}
             <u onClick={reportRequest} className="helpful-review-yes">Report</u>
