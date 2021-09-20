@@ -1,8 +1,10 @@
-import React from 'react';
-import StarRating from '../../Review-Components/StarRating.jsx';
+import React, { useContext } from 'react';
+import StarRatings from 'react-star-ratings';
+import { ProductContext } from '../../ProductContext.jsx';
 
-function ProductDetailView({ productInfo, selectedStyle, productId }) {
+function ProductDetailView({ productInfo, selectedStyle }) {
   let renderPrice;
+  const { averageRating } = useContext(ProductContext);
   if (selectedStyle.sale_price) {
     renderPrice = (
       <div>
@@ -18,7 +20,11 @@ function ProductDetailView({ productInfo, selectedStyle, productId }) {
     <>
       {/* Review snippent */}
       <div className="reviewSnippet my-3 d-flex">
-        <span><StarRating productId={productId} /></span>
+        <span>
+          <div className="star-rating">
+            <StarRatings starSpacing="2px" rating={Number(averageRating) || 0} starRatedColor="rgb(0,0,0)" numberOfStars={5} starDimension="1em" />
+          </div>
+        </span>
         <span className="ratingLink"><a href="#reviews" className="text-dark">Read all reviews</a></span>
       </div>
       {/*  Category */}

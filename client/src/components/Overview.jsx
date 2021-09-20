@@ -13,12 +13,17 @@ function Overview({ productId }) {
 
   useEffect(() => {
     const styleList = productStyles.results;
+    let noDefaultFlag = true;
     if (styleList) {
       styleList.forEach((style) => {
         if (style['default?']) {
           setSelectedStyle(style);
+          noDefaultFlag = false;
         }
       });
+      if (noDefaultFlag) {
+        setSelectedStyle(styleList[0]);
+      }
     }
   }, [productStyles]);
 

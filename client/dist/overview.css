@@ -6,7 +6,7 @@
 #mainImage .carousel-item img {
   position: relative;
   object-fit: contain;
-  object-position: top;
+  object-position: center;
   overflow: hidden;
   height: 75vh;
   z-index: 10;
@@ -91,8 +91,8 @@
   height: 20px !important;
   width: 20px !important;
 }
-.reviewSnippet .star-container {
-  padding: 1px !important;
+.reviewSnippet .star-rating {
+  padding-top: 0px !important;
 }
 .reviewSnippet .ratingLink {
   margin-top: 4px;

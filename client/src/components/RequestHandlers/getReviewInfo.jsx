@@ -51,7 +51,7 @@ export const getAverageRating = (id, callback) => {
         .reduce((r, a, i) => (Number(r) + Number(a)
         * Number(Object.keys(data.ratings)[i])))
         / Object.values(data.ratings)
-          .reduce((prev, curr) => Number(prev) + Number(curr));
+          .reduce((prev, curr) => Number(prev) + Number(curr)) || 0;
       callback(average);
     })
     .catch((err) => {
