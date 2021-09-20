@@ -61,7 +61,7 @@ function QuestionsAndAnswers({ productId }) {
       />
       <button
         type="button"
-        className="btn btn-outline-dark more-answers-button"
+        className="btn btn-outline-dark more-questions-button"
         onClick={handleMoreQuestions}
       >
         {moreQuestions ? 'HIDE QUESTIONS' : 'MORE ANSWERED QUESTIONS'}

@@ -24,7 +24,7 @@ const QuestionsList = ({ questions, moreQuestions, search, searchTerm }) => {
   if (moreQuestions) {
     return (
       <div>
-        <ul className="questions-list">
+        <ul className="more-questions-list">
           {filteredQuestions.map((question) => (
             <div key={question.question_id}>
               <Question

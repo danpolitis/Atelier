@@ -1,10 +1,18 @@
-.questions-list {
-  height: 300px;
+.more-questions-list {
+  height: 350px;
   width: 100%;
   overflow: hidden;
   overflow-y: scroll;
   margin: auto;
 }
+
+.questions-list {
+  height: 350px;
+  width: 100%;
+  overflow: hidden;
+  margin: auto;
+}
+
 .q-entry {
   display: flex;
   flex-direction: row;
@@ -30,15 +38,22 @@
   font-weight: bold;
 }
 
-.more-answers-button {
+.more-questions-button {
   margin: .25rem .125rem;
 }
 
 .answer-list {
-  height: 100px;
+  height: 150px;
   width: 50%;
   overflow: hidden;
-  /* overflow-y: scroll; */
+
+}
+
+.more-answer-list {
+  height: 150px;
+  width: 50%;
+  overflow: hidden;
+  overflow-y: scroll;
 }
 
 .search-bar {
@@ -106,6 +121,11 @@
 .answer-helpful {
   cursor: pointer;
   text-decoration: underline;
+}
+
+.more-answers-button {
+  font-size: 12px;
+  line-height: 1;
 }
 /* .search-form {
   position: relative;
