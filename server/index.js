@@ -20,6 +20,7 @@ const PORT = 3000;
 
 app.use('/css', express.static(path.join(BOOTSTRAPCSS_DIR)));
 app.use('/js', express.static(path.join(BOOTSTRAPJS_DIR)));
+app.use('/favicon.ico', express.static(path.join(__dirname)));
 
 app.get('/test', (req, res) => {
   res.json({ message: 'pass!' });
