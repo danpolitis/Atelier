@@ -96,7 +96,12 @@ function RelatedItems({ productId, setProductId }) {
 
   useEffect(() => {
     getCurrentProductFeatures(productId);
-    setOutfitIds(JSON.parse(window.localStorage.getItem('outfitIds')));
+    if (JSON.parse(window.localStorage.getItem('outfitIds')) === null) {
+      window.localStorage.setItem('outfitIds', JSON.stringify(outfitIds));
+      setOutfitIds(JSON.parse(window.localStorage.getItem('outfitIds')));
+    } else {
+      setOutfitIds(JSON.parse(window.localStorage.getItem('outfitIds')));
+    }
   }, []);
 
   useEffect(() => {

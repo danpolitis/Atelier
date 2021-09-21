@@ -8,7 +8,7 @@ const AddToOutfitCard = ({ addToOutfit }) => (
     }}
   >
     <Card.Body
-      style={{ padding: '4px', paddingTop: '120px' }}
+      style={{ padding: '4px', paddingTop: '135px', height: '350px' }}
       className="m-auto"
     >
       <Card.Title style={{ fontSize: '13px', padding: '4px' }}>Add to Outfit</Card.Title>
