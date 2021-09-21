@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from '../client/src/components/App.jsx';
-import app from '../server/app.js';
+import axios from 'axios';
+import { act } from 'react-dom/test-utils';
 import Reviews from '../client/src/components/Reviews.jsx';
 import ValidationMessage from '../client/src/components/Review-Components/ReviewForm/ValidationMessage.jsx';
 import ReviewListEntry from '../client/src/components/Review-Components/ReviewListEntry.jsx';
@@ -36,35 +36,77 @@ const formState = {
   comfort: 0,
 };
 
+jest.mock('axios');
+
+beforeEach(() => {
+  const metaData = {
+    product_id: '42366',
+    ratings: {
+      1: '3',
+      2: '1',
+      3: '12',
+      4: '10',
+      5: '14',
+    },
+    recommended: {
+      false: '15',
+      true: '25',
+    },
+    characteristics: {
+      Fit: {
+        id: 142032,
+        value: '2.2727272727272727',
+      },
+      Length: {
+        id: 142033,
+        value: '2.3809523809523810',
+      },
+      Comfort: {
+        id: 142034,
+        value: '3.2000000000000000',
+      },
+      Quality: {
+        id: 142035,
+        value: '2.9500000000000000',
+      },
+    },
+  };
+  axios.get.mockResolvedValue(metaData);
+});
+
 it('renders Reviews without crashing', () => {
   const div = document.createElement('div');
   const productId = 42366;
-  ReactDOM.render(<ProductProvider><Reviews productId={productId} /></ProductProvider>, div);
-});
-
-it('renders App without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<ProductProvider><App /></ProductProvider>, div);
+  act(() => {
+    ReactDOM.render(<ProductProvider><Reviews productId={productId} /></ProductProvider>, div);
+  });
 });
 
 it('renders ReviewListEntry without crashing', () => {
   const div = document.createElement('div');
   const productId = 42366;
 
-  ReactDOM.render(
-    <ProductProvider>
-      <ReviewListEntry
-        productId={productId}
-        count={2}
-        key={681771}
-        review={reviewData}
-        selected="relevance"
-      />
-    </ProductProvider>, div,
-  );
+  act(() => {
+    ReactDOM.render(
+      <ProductProvider>
+        <ReviewListEntry
+          productId={productId}
+          count={2}
+          key={681771}
+          review={reviewData}
+          selected="relevance"
+        />
+      </ProductProvider>,
+      div,
+    );
+  });
 });
 
-it('renders ValidationMessage without crashing', () => {
+it('renders ValidationMessage without crashing',  () => {
   const div = document.createElement('div');
-  ReactDOM.render(<ProductProvider><ValidationMessage state={formState} /></ProductProvider>, div);
+  act(() => {
+    ReactDOM.render(
+      <ValidationMessage state={formState} />, div,
+    );
+  });
 });
