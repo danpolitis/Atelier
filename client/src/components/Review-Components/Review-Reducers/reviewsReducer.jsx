@@ -1,5 +1,5 @@
 import React from 'react';
-export const FETCH_SUCCESS = 'FETCH_SUCESS';
+export const FETCH_REVIEW_SUCCESS = 'FETCH_REVIEW_SUCCESS';
 export const IS_LOADING = 'IS_LOADING';
 export const SET_COUNT = 'SET_COUNT';
 export const MODAL_CLICK = 'MODAL_CLICK';
@@ -7,7 +7,7 @@ export const SELECT_CHANGE = 'SELECT_CHANGE';
 
 export const reviewListReducer = (state, action) => {
   switch (action.type) {
-    case FETCH_SUCCESS:
+    case FETCH_REVIEW_SUCCESS:
       return {
         ...state,
         reviews: action.payload,
@@ -38,7 +38,7 @@ export const reviewListReducer = (state, action) => {
   }
 };
 
-export const initialState = {
+export const initState = {
   reviews: [],
   count: 2,
   isLoading: false,

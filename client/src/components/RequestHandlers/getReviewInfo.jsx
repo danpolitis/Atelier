@@ -11,16 +11,6 @@ export const getReviewInfo = {
       });
   },
 
-  getAllReviews: (id, count, selected, callback) => {
-    axios.get(`/api/reviews?product_id=${id}&count=${count}&sort=${selected}`)
-      .then(({ data }) => {
-        callback(null, data);
-      })
-      .catch((err) => {
-        callback(err);
-      });
-  },
-
   helpfulRequest: (reviewId, callback) => {
     axios.put(`/api/reviews/${reviewId}/helpful`)
       .then(() => {
@@ -53,6 +43,16 @@ export const getAverageRating = (id, callback) => {
         / Object.values(data.ratings)
           .reduce((prev, curr) => Number(prev) + Number(curr)) || 0;
       callback(average);
+    })
+    .catch((err) => {
+      callback(err);
+    });
+};
+
+export const getAllReviews = (id, count, selected, callback) => {
+  axios.get(`/api/reviews?product_id=${id}&count=${count}&sort=${selected}`)
+    .then(({ data }) => {
+      callback(null, data);
     })
     .catch((err) => {
       callback(err);

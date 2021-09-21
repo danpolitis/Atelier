@@ -245,3 +245,16 @@ select.styled-select:focus {
 .review-search{
   margin-bottom: 15px;
 }
+
+.check-box-rating{
+  position: relative;
+  left: 28px;
+  top: 5px;
+  cursor: pointer;
+  opacity: 0%;
+}
+
+/* .check-box-rating input[type="checkbox"] {
+  display: none;
+  visibility: hidden;
+} */

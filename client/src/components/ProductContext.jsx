@@ -1,12 +1,12 @@
 import React, { useState, createContext, useEffect } from 'react';
 import getProductInfo from './RequestHandlers/getProductInfo.jsx';
 import getProductStyles from './RequestHandlers/getProductStyles.jsx';
-import { getAverageRating } from './RequestHandlers/getReviewInfo.jsx';
+import { getAverageRating, getAllReviews } from './RequestHandlers/getReviewInfo.jsx';
 
 export const ProductContext = createContext();
 
 export const ProductProvider = ({ children }) => {
-  const [productId, setProductId] = useState(42368);
+  const [productId, setProductId] = useState(42366);
   const [productInfo, setProductInfo] = useState({});
   const [productStyles, setProductStyles] = useState({});
   const [averageRating, setaverageRating] = useState(0);
@@ -33,6 +33,7 @@ export const ProductProvider = ({ children }) => {
         productStyles,
         setProductStyles,
         averageRating,
+        getAllReviews,
       }}
     >
       {children}

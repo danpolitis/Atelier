@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import uniqid from 'uniqid';
 
-const RatingBar = ({ total, ratings }) => {
+const RatingBar = ({
+  total, ratings, handleChange, starFilter,
+}) => {
   const arrayHolder = [5, 4, 3, 2, 1];
   const progressBar = arrayHolder.map((star) => {
     const toNumberStar = Number(ratings[star]) || 0;
@@ -10,7 +12,8 @@ const RatingBar = ({ total, ratings }) => {
     return (
       <div key={uniqid()}>
         <p className="progress-label">
-          <u>
+          <input className="check-box-rating" type="checkbox" checked={starFilter[star]} value={star.toString()} onChange={handleChange} />
+          <u style={starFilter[star] ? { color: 'green' } : { color: 'black' }}>
             {star}
             {' '}
             Stars
