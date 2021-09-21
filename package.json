@@ -7,7 +7,8 @@
     "build": "webpack --watch",
     "start": "nodemon server/index.js",
     "live": "livereload ./client/dist -w 1000 -d",
-    "test": "jest --config ./jest.config.js"
+    "test": "jest --config ./jest.config.js",
+    "test-pup": "jest --config ./jestPuppeteer.config.js"
   },
   "repository": {
     "type": "git",

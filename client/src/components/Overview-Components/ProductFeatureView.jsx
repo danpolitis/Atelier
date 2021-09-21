@@ -61,6 +61,7 @@ function FeaturesList({ feature }) {
   return (
     <li className="d-flex align-items-center position-relative">
       {feature.feature}
+      &nbsp;
       {feature.value}
     </li>
   );
