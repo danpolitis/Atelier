@@ -86,3 +86,6 @@ config.js
 
 # webpack bundle
 bundle.js
+
+# ignore pem
+ocelot.pem

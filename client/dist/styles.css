@@ -1,0 +1,620 @@
+/*
+ *  OVERVIEW
+ */
+
+/* Overview: Main image carousel */
+#mainImage .carousel-inner {
+  height: 75vh;
+  width: 100%;
+}
+#mainImage .carousel-item img {
+  position: relative;
+  object-fit: contain;
+  object-position: center;
+  overflow: hidden;
+  height: 75vh;
+  z-index: 10;
+}
+#mainImage .carousel-item {
+  cursor: zoom-in;
+}
+#mainImage .carousel-indicators.normalView {
+  position: absolute;
+  width: 10%;
+  margin: 0;
+  padding-left: 10px;
+  top: 0;
+}
+#mainImage .carousel-indicators.normalView .active {
+  border-bottom: 5px solid black;
+  padding-bottom: 5px;
+}
+#mainImage .carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+}
+
+#mainImage .carousel-control-next-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+}
+#mainImage .carousel-indicators [data-bs-target] {
+  box-sizing: border-box !important;
+  border: 0;
+}
+#mainImage .carousel-indicators img {
+  width: 60px !important;
+  height: 60px !important;
+  object-fit: cover;
+  opacity: 1 !important;
+}
+#mainImage .carousel-control-prev {
+  left: 40px;
+}
+
+#mainImage .thumbnailArrows {
+  color: black;
+  width: 60px;
+  position: relative;
+}
+
+
+/* Overview: style selectors */
+#style-thumbnails img {
+  width: 60px;
+  border-radius: 50%;
+  height: 60px;
+  object-fit: cover;
+  border: 2px solid black;
+}
+#style-thumbnails svg {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  left: 50px;
+}
+#style-thumbnails button {
+  position: relative;
+  background: none;
+  border: none;
+  display: flex;
+  flex-basis: 25%;
+}
+
+/* Overview: features list */
+#featureList ul {
+  list-style: none;
+}
+
+#featureList ul li:before {
+  content: '✓';
+  font-size: 1.75rem;
+  margin-right: 1rem;
+}
+
+/* Overview: Review Snippet */
+.reviewSnippet svg {
+  height: 20px !important;
+  width: 20px !important;
+}
+.reviewSnippet .star-rating {
+  padding-top: 0px !important;
+}
+.reviewSnippet .ratingLink {
+  margin-top: 4px;
+  margin-left: 10px;
+}
+
+/* Overview: Fullscreen mode  */
+.fullscreen-icon {
+  display: flex;
+  position: absolute;
+  background: none;
+  border: hidden;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+}
+
+.showFullscreen .carousel-item img {
+  height: calc(100vh - 80px) !important;
+}
+.showFullscreen .carousel-inner {
+  height: calc(100vh - 80px) !important;
+}
+
+.showFullscreen .carousel-item {
+  cursor: crosshair;
+}
+
+.showFullscreen .carousel-item .zoomed {
+  cursor: zoom-out;
+  height: 100vh;
+}
+
+/* Navbar */
+.navbar {
+  height: 80px;
+}
+
+/*
+ *  QUESTIONS AND ANSWERS
+ */
+
+ .more-questions-list {
+  height: 350px;
+  width: 100%;
+  overflow: hidden;
+  overflow-y: scroll;
+  margin: auto;
+}
+
+.questions-list {
+  height: 350px;
+  width: 100%;
+  overflow: hidden;
+  margin: auto;
+}
+
+.q-entry {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 80%;
+  font-size: var(--subtitle-size);
+}
+
+.a-entry {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.q-a-title {
+  font-size: var(--title-size);
+  color: var(--title-color);
+  padding: 10px;
+  padding-top: 35px;
+}
+
+.q-body {
+  font-weight: bold;
+}
+
+.more-questions-button {
+  margin: .25rem .125rem;
+}
+
+.answer-list {
+  height: 150px;
+  width: 50%;
+  overflow: hidden;
+
+}
+
+.more-answer-list {
+  height: 150px;
+  width: 50%;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.search-bar {
+  width: 500px;
+  height: 28px;
+  margin: 1rem .125rem;
+}
+
+.add-answer {
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: underline overline;
+}
+
+.helpful:hover {
+  cursor: pointer;
+  color: #79B4B7;
+  font-weight: bold;
+}
+
+.helpful-review:hover{
+  font-size: .7em;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+
+
+.report{
+  font-size: .7em;
+  cursor: pointer;
+  border-bottom: solid 1px black;
+}
+
+.helpful-review-yes{
+  cursor: pointer;
+}
+.add-a-question-button {
+  margin: .25rem .125rem;
+}
+
+.questions-buttons {
+  font-size: 15px;
+}
+
+.helpful-grid {
+  font-weight: 400;
+  line-height: 1.5;
+  color: #198754
+}
+
+.seller {
+  font-weight: bold;
+}
+
+.Ahelp-report {
+  padding-left: 2.5%;
+  font-size: .7em;
+}
+
+.a-bullet {
+  font-weight: bold;
+}
+
+.answer-helpful {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.more-answers-button {
+  font-size: 12px;
+  line-height: 1;
+}
+/* .search-form {
+  position: relative;
+  display: flex;
+}
+
+.search-icon {
+  position: absolute;
+  top: 6px;
+  left: 475px;
+  width: 14px;
+  color: rgb(38, 50, 56);
+} */
+
+ /*
+ *  RELATED ITEMS
+ */
+
+ .carousel-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.carousel-wrapper {
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+
+.carousel-content-wrapper {
+  overflow: hidden;
+  width: auto;
+  height: 100%;
+}
+
+.carousel-content {
+  display: flex;
+  transition: all 250ms linear;
+  -ms-overflow-style: none;  /* hide scrollbar in IE and Edge */
+  scrollbar-width: none;  /* hide scrollbar in Firefox */
+}
+
+/* hide scrollbar in webkit browser */
+.carousel-content::-webkit-scrollbar, .carousel-content::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-content > * {
+  width: 100%;
+  flex-shrink: 0;
+  flex-grow: 1;
+}
+
+.left-arrow, .right-arrow {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  background-color: white;
+  border: 1px solid #ddd;
+}
+
+.left-arrow {
+  left: 24px;
+}
+
+.right-arrow {
+  right: 24px;
+}
+
+.carousel-content.show-2 > * {
+  width: 50%;
+}
+
+.carousel-content.show-3 > * {
+  width: calc(100% / 3);
+}
+
+.carousel-content.show-4 > * {
+  width: calc(100% / 4);
+}
+
+
+ /*
+ *  REVIEWS
+ */
+
+ .progress-bar{
+  background-color: #065535;
+}
+
+.progress-label{
+  float:left;
+  margin-right: 1em;
+}
+
+.progress{
+  margin-top: 7px;
+}
+
+.review-sort-font{
+  font-weight: bold;
+  padding-right: 10px;
+}
+
+.average-score{
+  float:left;
+  margin-right: 4px;
+  margin-bottom: 0;
+  font-size: 50px;
+  font-weight: bold;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+.recommended{
+  margin-top: 40px;
+  width: 100%;
+  font-size: small;
+}
+
+div.star-container{
+  padding-left: 1px;
+}
+
+.star-rating{
+  padding-top: 10px;
+}
+
+#progress-bar{
+  font-size: small;
+}
+
+.characteristics{
+  width: 70%;
+}
+
+.characteristics-label{
+  width: 70%;
+  font-size: .6em;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 7px;
+}
+
+.size-label{
+  margin-bottom: 0;
+  font-size: .95em;
+}
+
+.comfort-label{
+  margin-top: 15px;
+  margin-bottom: 0;
+  font-size: .95em;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  display: block;
+  margin: 0;
+  width: 70%;
+  background: transparent;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 10px;
+  width: 40px;
+  background: url(caret-down-fill.svg);
+  background-size: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 70%;
+  height: 0.5em;
+  cursor: pointer;
+  background: #e9ecef;
+  border-radius: 7px;
+  margin-top: 10px;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #367ebd;
+}
+
+.username{
+  font-size: .7em
+}
+
+.helpful-review{
+  font-size: .7em
+}
+
+.helpful-review-yes{
+  cursor:pointer;
+}
+
+.helpful-review-yes:hover{
+  text-decoration: none;
+}
+
+.review-container{
+  border-bottom: 1px solid black;
+  margin-bottom: 30px;
+}
+
+.btn-outline-dark{
+  margin-right: 15px
+}
+
+
+.review-sort{
+  width: 100%;
+  display: flex;
+}
+
+.review-sort-click{
+  cursor: pointer;
+}
+
+select.styled-select {
+  -moz-appearance:none;
+  -webkit-appearance:none;
+  display: block;
+  background-image: url('chevron-down.svg');
+  background-position: 100% 50%;
+  padding-right: 20px;
+  background-repeat: no-repeat;
+  appearance:none;
+  border: none;
+  font-weight: bold;
+  border-bottom: 1px solid black;
+}
+
+select.styled-select:focus {
+  background-color:#FFF;
+  outline:none;
+  border:none;
+  box-shadow:none;
+  border-bottom: 1px solid black;
+}
+
+
+.radio-label-vertical-wrapper {
+  padding-bottom: 13px;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.radio-label-vertical-wrapper:before {
+  content: ' ';
+  display: block;
+  width: 100%;
+  height: 30px;
+  position: absolute;
+  bottom: 0;
+}
+
+.radio-label-vertical-wrapper label:not(.radio-label-vertical) {
+  display: block;
+  width: 100%;
+}
+
+.radio-label-vertical {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.radio-label-vertical input {
+  position: absolute;
+  top: 28px;
+  left: 50%;
+  margin-left: -6px;
+  display: block;
+  cursor: pointer;
+}
+
+.radio-characteristic-labels{
+  position:relative;
+  padding-top: 10px;
+  padding-left: 20px;
+  text-decoration: underline;
+}
+
+.about-product{
+  margin: 15px;
+}
+
+.error-message{
+  color: red;
+  margin-bottom: 0;
+}
+
+.form-group{
+  margin-bottom: 20px;
+}
+
+.validate-message-list{
+  list-style: none;
+  color: red;
+}
+
+.star-rating-form{
+  align-items:stretch;
+  margin-bottom: 16px;
+}
+
+.select-rating-span{
+  padding-left: 25px;
+  vertical-align: middle;
+}
+
+.end-page{
+  margin-top: 20px;
+}
+
+.photo-upload-delete{
+  position: relative;
+  top: -35px;
+  left: -26px;
+}
+
+.image-preview{
+  display:flex;
+}
+
+.review-search{
+  margin-bottom: 15px;
+}
+
+.check-box-rating{
+  position: relative;
+  left: 28px;
+  top: 5px;
+  cursor: pointer;
+  opacity: 0%;
+}
+
+/* .check-box-rating input[type="checkbox"] {
+  display: none;
+  visibility: hidden;
+} */

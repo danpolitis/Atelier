@@ -21,8 +21,8 @@ function RenderMainImages(props) {
     const posY = e.clientY - 80;
     const winX = e.target.offsetWidth;
     const winY = e.target.offsetHeight;
-    const picX = e.target.naturalWidth * 4;
-    const picY = e.target.naturalHeight * 4;
+    const picX = e.target.naturalWidth * 5;
+    const picY = e.target.naturalHeight * 5;
 
     const renderY = ((posY / winY) - 0.5) * (picY / 2);
     const renderX = ((posX / winX) - 0.5) * (picX / 2);
