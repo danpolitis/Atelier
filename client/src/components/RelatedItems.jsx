@@ -110,7 +110,6 @@ function RelatedItems({ productId, setProductId }) {
 
   useEffect(() => {
     window.localStorage.setItem('outfitIds', JSON.stringify(outfitIds));
-    console.log(JSON.parse(window.localStorage.getItem('outfitIds')))
     getAllData(outfitIds);
   }, [outfitIds]);
 

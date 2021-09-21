@@ -2,6 +2,7 @@ import React, { useState, createContext, useEffect } from 'react';
 import getProductInfo from './RequestHandlers/getProductInfo.jsx';
 import getProductStyles from './RequestHandlers/getProductStyles.jsx';
 import { getAverageRating, getAllReviews } from './RequestHandlers/getReviewInfo.jsx';
+import postInteractions from './RequestHandlers/postInteractions.jsx';
 
 export const ProductContext = createContext();
 
@@ -10,6 +11,7 @@ export const ProductProvider = ({ children }) => {
   const [productInfo, setProductInfo] = useState({});
   const [productStyles, setProductStyles] = useState({});
   const [averageRating, setaverageRating] = useState(0);
+  const [recordInteraction, setRecordInteraction] = useState({});
 
   useEffect(() => {
     getProductInfo(productId, (results) => {
@@ -23,6 +25,12 @@ export const ProductProvider = ({ children }) => {
     });
   }, [productId]);
 
+  useEffect(() => {
+    if (Object.keys(recordInteraction).length !== 0) {
+      postInteractions(recordInteraction);
+    }
+  }, [recordInteraction]);
+
   return (
     <ProductContext.Provider
       value={{
@@ -34,6 +42,7 @@ export const ProductProvider = ({ children }) => {
         setProductStyles,
         averageRating,
         getAllReviews,
+        setRecordInteraction,
       }}
     >
       {children}
