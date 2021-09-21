@@ -8,7 +8,7 @@ function RelatedItems({ productId, setProductId }) {
   const [relatedListData, setRelatedListData] = useState([]);
   const [relatedStyleData, setRelatedStyleData] = useState([]);
   const [mergedRelatedData, setMergedRelatedData] = useState([]);
-  const [outfitIds, setOutfitIds] = useState([42368]);
+  const [outfitIds, setOutfitIds] = useState([]);
   const [outfitListData, setOutfitListData] = useState([]);
   const [outfitStyleData, setOutfitStyleData] = useState([]);
   const [mergedOutfitData, setMergedOutfitData] = useState([]);
@@ -96,6 +96,7 @@ function RelatedItems({ productId, setProductId }) {
 
   useEffect(() => {
     getCurrentProductFeatures(productId);
+    setOutfitIds(JSON.parse(window.localStorage.getItem('outfitIds')));
   }, []);
 
   useEffect(() => {
@@ -103,6 +104,8 @@ function RelatedItems({ productId, setProductId }) {
   }, [productId]);
 
   useEffect(() => {
+    window.localStorage.setItem('outfitIds', JSON.stringify(outfitIds));
+    console.log(JSON.parse(window.localStorage.getItem('outfitIds')))
     getAllData(outfitIds);
   }, [outfitIds]);
 

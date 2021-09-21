@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
   Modal, Button, Row, Col, Container,
 } from 'react-bootstrap';
+import { BsStarFill } from 'react-icons/bs';
 
 const CompareModal = ({ product, currentFeatures }) => {
   const [show, setShow] = useState(false);
@@ -57,8 +58,8 @@ const CompareModal = ({ product, currentFeatures }) => {
 
   return (
     <>
-      <Button style={{ zIndex: 1, position: 'absolute', right: '10px', top: '10px' }} variant="primary" onClick={handleShow}>
-        Compare
+      <Button style={{ zIndex: 1, position: 'absolute', right: '10px', top: '10px', paddingBottom: '12px' }} variant="dark" onClick={handleShow}>
+        <BsStarFill />
       </Button>
 
       <Modal show={show} onHide={handleClose}>
