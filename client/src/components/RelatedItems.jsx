@@ -1,8 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, {
+  useState, useEffect, useRef, useContext,
+} from 'react';
 import axios from 'axios';
 import Carousel from './RelatedItems-Components/Carousel.jsx';
 import ProductCard from './RelatedItems-Components/ProductCard.jsx';
 import AddToOutfitCard from './RelatedItems-Components/AddToOutfitCard.jsx';
+import { ProductContext } from './ProductContext.jsx';
 
 function RelatedItems({ productId, setProductId }) {
   const [relatedListData, setRelatedListData] = useState([]);
@@ -16,6 +19,8 @@ function RelatedItems({ productId, setProductId }) {
 
   const previousRelatedValues = useRef({ relatedListData, relatedStyleData });
   const previousOutfitValues = useRef({ outfitListData, outfitStyleData });
+
+  const { setRecordInteraction } = useContext(ProductContext);
 
   const getItemData = (relatedId) => (axios.get(`/api/products/${relatedId}`)
     .then(({ data }) => (data)))
@@ -61,11 +66,16 @@ function RelatedItems({ productId, setProductId }) {
       });
   };
 
-  const addToOutfit = () => {
+  const addToOutfit = (e) => {
     if (outfitIds.indexOf(productId) === -1) {
       const newIds = outfitIds.concat(productId);
       setOutfitIds(newIds);
     }
+    setRecordInteraction({
+      element: `${e.target}`,
+      widget: 'RelatedItems',
+      time: new Date(),
+    });
   };
 
   const getCurrentProductFeatures = (id) => {
@@ -84,14 +94,24 @@ function RelatedItems({ productId, setProductId }) {
       .catch((err) => console.log(err));
   };
 
-  const changeCurrentItem = (id) => {
+  const changeCurrentItem = (id, e) => {
     setProductId(id);
+    setRecordInteraction({
+      element: `${e.target}`,
+      widget: 'RelatedItems',
+      time: new Date(),
+    });
   };
 
-  const removeOutfitItem = (id) => {
+  const removeOutfitItem = (id, e) => {
     const index = outfitIds.indexOf(id);
     const outfit = outfitIds.slice(0, index).concat(outfitIds.slice(index + 1, outfitIds.length));
     setOutfitIds(outfit);
+    setRecordInteraction({
+      element: `${e.target}`,
+      widget: 'RelatedItems',
+      time: new Date(),
+    });
   };
 
   useEffect(() => {

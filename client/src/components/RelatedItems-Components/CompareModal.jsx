@@ -1,16 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   Modal, Button, Row, Col, Container,
 } from 'react-bootstrap';
 import { BsStarFill } from 'react-icons/bs';
+import { ProductContext } from '../ProductContext.jsx';
 
 const CompareModal = ({ product, currentFeatures }) => {
   const [show, setShow] = useState(false);
   const [mergedFeatureList, setMergedFeatureList] = useState([]);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const { setRecordInteraction } = useContext(ProductContext);
 
+  const handleClose = (e) => {
+    setShow(false);
+    setRecordInteraction({
+      element: 'ModalHideButton',
+      widget: 'RelatedItems',
+      time: new Date(),
+    });
+  };
+  const handleShow = (e) => {
+    setShow(true);
+    setRecordInteraction({
+      element: `${e.target}`,
+      widget: 'RelatedItems',
+      time: new Date(),
+    });
+  };
   const combineFeatureLists = () => {
     const mergedList = product.features.map((clickedFeature) => {
       let doesShareFeature = false;
@@ -59,7 +75,7 @@ const CompareModal = ({ product, currentFeatures }) => {
   return (
     <>
       <Button style={{ zIndex: 1, position: 'absolute', right: '10px', top: '10px', paddingBottom: '12px' }} variant="dark" onClick={handleShow}>
-        <BsStarFill />
+        <img src='bsStarFill.svg'></img>
       </Button>
 
       <Modal show={show} onHide={handleClose}>
@@ -69,9 +85,9 @@ const CompareModal = ({ product, currentFeatures }) => {
         <Modal.Body>
           <Container>
             <Row>
-              <Col style={{ fontWeight: 'bold', textDecoration: 'underline' }}>This Product</Col>
-              <Col style={{ fontWeight: 'bold', textDecoration: 'underline' }}>Feature</Col>
               <Col style={{ fontWeight: 'bold', textDecoration: 'underline' }}>{product.name}</Col>
+              <Col style={{ fontWeight: 'bold', textDecoration: 'underline' }}>Feature</Col>
+              <Col style={{ fontWeight: 'bold', textDecoration: 'underline' }}>This Product</Col>
             </Row>
             {mergedFeatureList.map((feature) => (
               <Row key={feature.feature}>

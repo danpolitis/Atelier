@@ -1,5 +1,6 @@
 {
   "name": "project-catwalk-team-ocelot",
+  "sideEffects": false,
   "version": "1.0.0",
   "description": "FEC project",
   "main": "index.js",
@@ -7,7 +8,9 @@
     "build": "webpack --watch",
     "start": "nodemon server/index.js",
     "live": "livereload ./client/dist -w 1000 -d",
-    "test": "jest --config ./jest.config.js"
+    "test": "jest --config ./jest.config.js",
+    "stats": "./node_modules/.bin/webpack --json >stats.json",
+    "analyzer": "npx webpack-bundle-analyzer stats.json"
   },
   "repository": {
     "type": "git",
@@ -40,7 +43,9 @@
     "puppeteer": "^9.1.1",
     "react-test-renderer": "^17.0.2",
     "supertest": "^6.1.6",
+    "terser-webpack-plugin": "^5.2.4",
     "webpack": "^5.52.0",
+    "webpack-bundle-analyzer": "^4.4.2",
     "webpack-cli": "^4.8.0"
   },
   "dependencies": {

@@ -38,9 +38,9 @@ const ProductCard = ({
             zIndex: 1, position: 'absolute', right: '10px', top: '10px', paddingBottom: '8px',
           }}
           variant="dark"
-          onClick={() => { removeOutfitItem(product.id); }}
+          onClick={(e) => { removeOutfitItem(product.id, e); }}
         >
-          <VscChromeClose />
+          <img src='x.svg'></img>
         </Button>
       );
     }
@@ -65,8 +65,8 @@ const ProductCard = ({
       }}
     >
       {renderActionButton()}
-      <Card.Img onClick={() => onClick(product.id)} variant="top" src={displayUrl} style={{ height: '225px', objectFit: 'cover' }} />
-      <Card.Body onClick={() => onClick(product.id)} style={{ padding: '4px' }}>
+      <Card.Img onClick={(e) => onClick(product.id, e)} variant="top" src={displayUrl} style={{ height: '225px', objectFit: 'cover' }} />
+      <Card.Body onClick={(e) => onClick(product.id, e)} style={{ padding: '4px' }}>
         <Card.Title style={{ fontSize: '13px', padding: '4px' }}>{product.category}</Card.Title>
         <Card.Title style={{ fontSize: '15px', padding: '4px' }}>{product.name}</Card.Title>
         <StarRatings starSpacing="2px" rating={Number(currentAverage) || 0} starRatedColor="rgb(0,0,0)" numberOfStars={5} starDimension="15px" />

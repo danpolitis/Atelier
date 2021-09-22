@@ -1,4 +1,5 @@
 const path = require('path');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const SOURCE_DIR = path.resolve(__dirname, 'client', 'src', 'index.jsx');
 const DIST_DIR = path.resolve(__dirname, 'client', 'dist');
@@ -23,6 +24,11 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.js', 'jsx'],
+    extensions: ['.mjs', '.js', 'jsx', '.json'],
+  },
+  optimization: {
+    usedExports: true,
+    minimize: true,
+    minimizer: [new TerserPlugin()],
   },
 };
