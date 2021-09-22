@@ -1,17 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Answer from './Answer.jsx';
+import { ProductContext } from '../ProductContext.jsx';
 
 const AnswersList = ({ answers }) => {
   const [moreAnswers, showMoreAnswers] = useState(false);
+  const { setRecordInteraction } = useContext(ProductContext);
   answers.sort((a, b) => b.helpfulness - a.helpfulness);
 
-  const handleMoreAnswers = () => {
+  const handleMoreAnswers = (e) => {
     showMoreAnswers((more) => !more);
+    setRecordInteraction({
+      element: `${e.target}`,
+      widget: 'QuestionsAndAnswers',
+      time: new Date(),
+    });
   };
 
-  const style = {
-    overflowY: moreAnswers ? 'scroll' : 'hidden',
-  };
 
   if (moreAnswers) {
     return (

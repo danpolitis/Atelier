@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
+import { ProductContext } from '../ProductContext.jsx';
 
 const Answer = ({ answer }) => {
   const [helpful, setHelpful] = useState(answer.helpfulness);
   const [voted, setVoted] = useState(false);
   const [reported, setReported] = useState(false);
 
-  const handleHelpClick = () => {
+  const { setRecordInteraction } = useContext(ProductContext);
+
+  const handleHelpClick = (e) => {
+    setRecordInteraction({
+      element: `${e.target}`,
+      widget: 'QuestionsAndAnswers',
+      time: new Date(),
+    });
     if (!voted) {
       setVoted((vote) => !vote);
       setHelpful((helped) => helped + 1);
@@ -25,7 +33,12 @@ const Answer = ({ answer }) => {
     }
   };
 
-  const handleReport = () => {
+  const handleReport = (e) => {
+    setRecordInteraction({
+      element: `${e.target}`,
+      widget: 'QuestionsAndAnswers',
+      time: new Date(),
+    });
     setReported(true);
     axios.put(
       `/api/qa/answers/${answer.answer_id}/report`,

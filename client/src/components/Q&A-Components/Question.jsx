@@ -1,15 +1,21 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable max-len */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import AnswersList from './AnswersList.jsx';
 import AnswerForm from './AnswerForm.jsx';
+import { ProductContext } from '../ProductContext.jsx';
 
-const Question = ({ question }) => {
+const Question = ({ question, searchTerm }) => {
   const [answers, setAnswers] = useState([]);
   const [currentAnswers, setCurrentAnswers] = useState(answers);
   const [helpful, setHelpful] = useState(question.question_helpfulness);
   const [voted, setVoted] = useState(false);
   const [reported, setReported] = useState(false);
   const [showAnswerForm, setShowAnswerForm] = useState(false);
+
+  const { setRecordInteraction } = useContext(ProductContext);
 
   const fetchAnswers = () => {
     axios.get(`/api/qa/questions/${question.question_id}/answers`)
@@ -26,7 +32,12 @@ const Question = ({ question }) => {
     fetchAnswers();
   }, [question.question_id]);
 
-  const handleHelpClick = () => {
+  const handleHelpClick = (e) => {
+    setRecordInteraction({
+      element: `${e.target}`,
+      widget: 'QuestionsAndAnswers',
+      time: new Date(),
+    });
     if (!voted) {
       setVoted((vote) => !vote);
       setHelpful((helped) => helped + 1);
@@ -45,7 +56,12 @@ const Question = ({ question }) => {
     }
   };
 
-  const handleReport = () => {
+  const handleReport = (e) => {
+    setRecordInteraction({
+      element: `${e.target}`,
+      widget: 'QuestionsAndAnswers',
+      time: new Date(),
+    });
     setReported(true);
     axios.put(
       `api/qa/questions/${question.question_id}/report`,
@@ -61,15 +77,27 @@ const Question = ({ question }) => {
       });
   };
 
+  const handleAddAnswer = (e) => {
+    setShowAnswerForm(true);
+    setRecordInteraction({
+      element: `${e.target}`,
+      widget: 'QuestionsAndAnswers',
+      time: new Date(),
+    });
+  };
+
   return (
     <>
       <div className="q-entry">
-        <span className="q-body">{`Q: ${question.question_body}`}</span>
+        <span className="q-body">
+          {`Q: ${question.question_body}`}
+        </span>
         <div>
           <span
             className="helpful-review"
             onClick={handleHelpClick}
-          >Helpful? Yes:
+          >
+            Helpful? Yes:
             {voted ? `(${helpful})` : `(${helpful})`}
           </span>
           <small>{'  |  '}</small>
@@ -77,14 +105,14 @@ const Question = ({ question }) => {
             className="helpful-review"
             onClick={handleReport}
           >
-          {reported ? 'Question was Reported ' : ' Report'}
+            {reported ? 'Question was Reported ' : ' Report'}
           </span>
           <small>{'  |  '}</small>
           <span
             type="button"
             data-bs-toggle="modal"
             data-bs-target="#answerModal"
-            onClick={() => { setShowAnswerForm(true); }}
+            onClick={handleAddAnswer}
             className="helpful-review"
           >
             Add Answer

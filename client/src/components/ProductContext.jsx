@@ -7,7 +7,7 @@ import postInteractions from './RequestHandlers/postInteractions.jsx';
 export const ProductContext = createContext();
 
 export const ProductProvider = ({ children }) => {
-  const [productId, setProductId] = useState(42366);
+  const [productId, setProductId] = useState(42368);
   const [productInfo, setProductInfo] = useState({});
   const [productStyles, setProductStyles] = useState({});
   const [averageRating, setaverageRating] = useState(0);

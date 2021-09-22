@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const axios = require('axios');
 const cors = require('cors');
+const compression = require('compression');
 
 const app = express();
 const path = require('path');
@@ -11,6 +12,7 @@ const PUBLIC_DIR = path.resolve(__dirname, '..', 'client', 'dist');
 const BOOTSTRAPCSS_DIR = path.resolve(__dirname, '..', 'node_modules', 'bootstrap', 'dist', 'css');
 const BOOTSTRAPJS_DIR = path.resolve(__dirname, '..', 'node_modules', 'bootstrap', 'dist', 'js');
 
+app.use(compression());
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.static(PUBLIC_DIR));

@@ -72,18 +72,12 @@
   text-decoration: underline overline;
 }
 
-.helpful:hover {
-  cursor: pointer;
-  color: #79B4B7;
-  font-weight: bold;
-}
 
 .helpful-review:hover{
   font-size: .7em;
   cursor: pointer;
   text-decoration: underline;
 }
-
 
 
 .report{
@@ -103,12 +97,6 @@
   font-size: 15px;
 }
 
-.helpful-grid {
-  font-weight: 400;
-  line-height: 1.5;
-  color: #198754
-}
-
 .seller {
   font-weight: bold;
 }
@@ -122,7 +110,7 @@
   font-weight: bold;
 }
 
-.answer-helpful {
+.answer-helpful:hover {
   cursor: pointer;
   text-decoration: underline;
 }
@@ -131,19 +119,19 @@
   font-size: 12px;
   line-height: 1;
 }
-/* .search-form {
-  position: relative;
-  display: flex;
+
+.email-notice {
+  font-size: small;
 }
 
-.search-icon {
-  position: absolute;
-  top: 6px;
-  left: 475px;
-  width: 14px;
-  color: rgb(38, 50, 56);
-} */
+.Asubtitle {
+  padding-top: 5px;
+  padding-left: 15px;
+}
 
+.asterisk {
+  text-decoration-color: red;
+}
  /*
  *  RELATED ITEMS
  */
