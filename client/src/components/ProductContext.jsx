@@ -12,6 +12,7 @@ export const ProductProvider = ({ children }) => {
   const [productStyles, setProductStyles] = useState({});
   const [averageRating, setaverageRating] = useState(0);
   const [recordInteraction, setRecordInteraction] = useState({});
+  const [outfitIds, setOutfitIds] = useState([]);
 
   useEffect(() => {
     getProductInfo(productId, (results) => {
@@ -43,6 +44,8 @@ export const ProductProvider = ({ children }) => {
         averageRating,
         getAllReviews,
         setRecordInteraction,
+        outfitIds,
+        setOutfitIds,
       }}
     >
       {children}

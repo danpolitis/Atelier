@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { IoMdCloseCircle } from 'react-icons/io';
 import uniqid from 'uniqid';
 import { ProductContext } from '../../ProductContext.jsx';
 

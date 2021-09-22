@@ -1,18 +1,17 @@
 import styled from 'styled-components';
 import React, { useState, useEffect, useContext } from 'react';
 import _ from 'underscore';
-import { FaCheckCircle } from 'react-icons/fa';
 import { ProductContext } from '../../ProductContext.jsx';
 
 const StyleThumbnailsDiv = styled.div`
-  img {
+  img.selectedImg {
     width: 60px;
     border-radius: 50%;
     height: 60px;
     object-fit: cover;
     border: 2px solid black;
   }
-  svg {
+  img.checkIcon {
     position: absolute;
     background: white;
     border-radius: 50%;
@@ -67,12 +66,10 @@ function StyleSelectorView({ productStyles, selectedStyle, setSelectedStyle }) {
 
   return (
     <>
-      {/* Selected Style */}
       <div className="mb-2 text-uppercase">
         <span className="fw-bold">STYLE &gt; </span>
         <span className="">{selectedStyle.name}</span>
       </div>
-      {/* Style Thumbnails */}
       <StyleThumbnailsDiv id="style-thumbnails" className="d-flex flex-wrap col-lg-8">
         {renderStyleThumbnails}
       </StyleThumbnailsDiv>
@@ -100,8 +97,8 @@ function StyleThumbnails(props) {
 
   return (
     <button type="button" onClick={handleStyleChange} className="mb-4">
-      <img src={displayUrl} alt={altText} />
-      {styleId === selectedStyleId ? <FaCheckCircle color="green" size="15px" /> : ''}
+      <img className="selectedImg" src={displayUrl} alt={altText} />
+      {styleId === selectedStyleId ? <img className="checkIcon" src="assets/faCheckCircle.svg" alt="faCheckCircle.svg" /> : ''}
     </button>
   );
 }

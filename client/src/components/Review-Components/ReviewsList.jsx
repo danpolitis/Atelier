@@ -39,7 +39,7 @@ const ReviewsList = (props) => {
     <>
       <div className="review-sort">
         <p className="review-sort-font" style={{ fontWeight: 'bold', paddingRight: '10px' }}>
-          {`${totalRatings} reviews, sorted by`}
+          {`${reviews.length} reviews, sorted by`}
         </p>
         <form onChange={handleSortChange}>
           <div className="form-group" style={{ marginBottom: '20px' }}>

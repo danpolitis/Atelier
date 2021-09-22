@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import {
   Modal, Button, Row, Col, Container,
 } from 'react-bootstrap';
-import { BsStarFill } from 'react-icons/bs';
 import { ProductContext } from '../ProductContext.jsx';
 
 const CompareModal = ({ product, currentFeatures }) => {

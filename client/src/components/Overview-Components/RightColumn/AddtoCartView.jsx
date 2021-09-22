@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import _ from 'underscore';
-import { BsStar } from 'react-icons/bs';
 import { ProductContext } from '../../ProductContext.jsx';
 
 function AddtoCartView({ selectedStyle }) {
@@ -15,7 +14,7 @@ function AddtoCartView({ selectedStyle }) {
   const [selectedSize, setSelectedSize] = useState('DEFAULT');
   const [quantity, setQuantity] = useState(0);
   const [cartToggle, setCartToggle] = useState(false);
-  const { setRecordInteraction } = useContext(ProductContext);
+  const { setRecordInteraction, setOutfitIds, outfitIds, productId } = useContext(ProductContext);
 
   // LIFECYCLE METHODS
   useEffect(() => {
@@ -93,6 +92,18 @@ function AddtoCartView({ selectedStyle }) {
     });
   }
 
+  function handleOutfit(e) {
+    if (outfitIds.indexOf(productId) === -1) {
+      const newIds = outfitIds.concat(productId);
+      setOutfitIds(newIds);
+    }
+    setRecordInteraction({
+      element: `${e.target}`,
+      widget: 'Overview',
+      time: new Date(),
+    });
+  }
+
   return (
     <>
       {/* Select Size and Quantity */}
@@ -117,13 +128,14 @@ function AddtoCartView({ selectedStyle }) {
           </div>
         </div>
       </div>
-      {/* Add to Cart and Favorite */}
       <div className="row">
         <div className={`col-9 ${validSkus.length === 0 ? 'd-none' : ''}`}>
           <button id="addToCart" onClick={handleAddCart} type="button" className="btn btn-outline-dark w-100 p-3">Add to Cart</button>
         </div>
         <div className="col-3">
-          <button type="button" className="btn btn-outline-dark w-100 p-3" aria-hidden="true"><BsStar /></button>
+          <button type="button" className="btn btn-outline-dark w-100 p-3" aria-hidden="true" onClick={handleOutfit}>
+            <img alt="bsStar" src="assets/bsStar.svg" />
+          </button>
         </div>
       </div>
     </>

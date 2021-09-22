@@ -1,9 +1,13 @@
 import React from 'react';
-import { FaSearch } from 'react-icons/fa';
 import styled from 'styled-components';
 
 const StyledNavbar = styled.nav`
   height: 80px;
+  .faSearch {
+    height: 1em;
+    width: 1em;
+    filter: invert(1);
+  }
 `;
 
 function Navbar() {
@@ -17,7 +21,9 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <form className="d-flex ms-auto">
             <input className="form-control me-2 bg-transparent border-bottom border-top-0 border-start-0 border-end-0 border-2 rounded-0 text-white" type="search" placeholder="Search" aria-label="Search" />
-            <button className="btn btn-dark bg-transparent border-0 fs-3" type="submit"><FaSearch /></button>
+            <button className="btn btn-dark bg-transparent border-0 fs-3" type="submit">
+              <img src="assets/faSearch.svg" alt="faSearch" className="faSearch" />
+            </button>
           </form>
         </div>
       </div>

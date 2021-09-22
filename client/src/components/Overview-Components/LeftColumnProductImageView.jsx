@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-import { BiFullscreen } from 'react-icons/bi';
-import { BsChevronCompactDown, BsChevronCompactUp } from 'react-icons/bs';
 
 import RenderMainImages from './LeftColumn/RenderMainImages.jsx';
 import MainThumbnails from './LeftColumn/MainThumbnails.jsx';
@@ -12,7 +10,7 @@ const MainImageInner = styled.div`
   height: 75vh;
   width: 100%;
   ${(props) => props.showFullscreen && css`
-    height: calc(100vh - 80px) !important;
+    height: calc(100vh - 160px) !important;
   `}
 `;
 const CarouselIndicators = styled.div`
@@ -137,23 +135,27 @@ function LeftColumnProductImageView({ selectedStyle, fullscreenToggle, setFullsc
         <MainImageInner id="mainImageInner" className="carousel-inner" showFullscreen={fullscreenToggle}>
           {renderMainImages}
         </MainImageInner>
-        {/* </div> */}
         <FullscreenButton type="button" className={`fullscreen-icon ${zoom ? 'd-none' : ''}`} onClick={handleFullscreen}>
-          <BiFullscreen size="2em" />
+          <img alt="biFullscreen" src="assets/biFullscreen.svg" />
         </FullscreenButton>
         <div className={`${zoom ? 'd-none' : ''}`}>
           <CarouselIndicators className={`carousel-indicators ${fullscreenToggle ? 'fullscreenView' : 'normalView d-flex flex-column justify-content-evenly'}`}>
-            {/* if thumbnails is greater than  */}
-            <BsChevronCompactUp
-              size="3em"
+            <img
+              src="assets/BsChevronCompactUp.svg"
+              alt="BsChevronCompactUp"
               className={`thumbnailArrows ${thumbnailsLength > 7 && thumbRange[0] !== 0 ? '' : 'd-none'}`}
               onClick={thumbClickUp}
+              onKeyUp={thumbClickUp}
+              aria-hidden="true"
             />
             {fullscreenToggle ? renderMainIndicators : renderMainThumbnails}
-            <BsChevronCompactDown
-              size="3em"
+            <img
+              src="assets/BsChevronCompactDown.svg"
+              alt="BsChevronCompactDown"
               className={`thumbnailArrows ${thumbnailsLength > 7 && thumbRange[1] !== thumbnailsLength - 1 ? '' : 'd-none'}`}
               onClick={thumbClickDown}
+              onKeyDown={thumbClickDown}
+              aria-hidden="true"
             />
           </CarouselIndicators>
           <CarouselPrevButton className="carousel-control-prev" type="button" data-bs-target="#mainImage" data-bs-slide="prev">

@@ -4,9 +4,8 @@ function Announcement() {
   return (
     <div
       id="announcement"
-      style={{
-        margin: '35px',
-      }}
+      style={{ height: '80px' }}
+      className="d-flex align-items-center justify-content-center"
     >
       <p className="text-center">
         SITE WIDE ANNOUNCEMENT MESSAGE! SALE / DISCOUNT

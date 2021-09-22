@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import StyleSelectorView from './RightColumn/StyleSelectorView.jsx';
 import ProductDetailView from './RightColumn/ProductDetailView.jsx';

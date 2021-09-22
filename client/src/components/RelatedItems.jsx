@@ -11,7 +11,6 @@ function RelatedItems({ productId, setProductId }) {
   const [relatedListData, setRelatedListData] = useState([]);
   const [relatedStyleData, setRelatedStyleData] = useState([]);
   const [mergedRelatedData, setMergedRelatedData] = useState([]);
-  const [outfitIds, setOutfitIds] = useState([]);
   const [outfitListData, setOutfitListData] = useState([]);
   const [outfitStyleData, setOutfitStyleData] = useState([]);
   const [mergedOutfitData, setMergedOutfitData] = useState([]);
@@ -20,7 +19,7 @@ function RelatedItems({ productId, setProductId }) {
   const previousRelatedValues = useRef({ relatedListData, relatedStyleData });
   const previousOutfitValues = useRef({ outfitListData, outfitStyleData });
 
-  const { setRecordInteraction } = useContext(ProductContext);
+  const { setRecordInteraction, outfitIds, setOutfitIds } = useContext(ProductContext);
 
   const getItemData = (relatedId) => (axios.get(`/api/products/${relatedId}`)
     .then(({ data }) => (data)))

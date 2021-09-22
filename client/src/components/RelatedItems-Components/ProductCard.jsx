@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import axios from 'axios';
 import StarRatings from 'react-star-ratings';
-import { VscChromeClose } from 'react-icons/vsc';
 import CompareModal from './CompareModal.jsx';
 
 const ProductCard = ({
