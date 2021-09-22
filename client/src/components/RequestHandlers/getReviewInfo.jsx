@@ -49,8 +49,8 @@ export const getAverageRating = (id, callback) => {
     });
 };
 
-export const getAllReviews = (id, count, selected, callback) => {
-  axios.get(`/api/reviews?product_id=${id}&count=${count}&sort=${selected}`)
+export const getAllReviews = (id, selected, callback) => {
+  axios.get(`/api/reviews?product_id=${id}&count=100&sort=${selected}`)
     .then(({ data }) => {
       callback(null, data);
     })

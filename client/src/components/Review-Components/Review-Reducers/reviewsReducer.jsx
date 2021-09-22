@@ -4,6 +4,7 @@ export const IS_LOADING = 'IS_LOADING';
 export const SET_COUNT = 'SET_COUNT';
 export const MODAL_CLICK = 'MODAL_CLICK';
 export const SELECT_CHANGE = 'SELECT_CHANGE';
+export const SEARCH_RESULT = 'SEARCH_RESULT';
 
 export const reviewListReducer = (state, action) => {
   switch (action.type) {

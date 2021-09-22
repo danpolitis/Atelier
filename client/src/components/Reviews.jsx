@@ -27,24 +27,44 @@ function Reviews({ productId }) {
   const [state, dispatch] = useReducer(reviewReducers, initialState);
   const [reviewState, reviewDispatch] = useReducer(reviewListReducer, initState);
   const [size, setSize] = useState(0);
-  const product = useContext(ProductContext);
+  const { getAllReviews, setRecordInteraction } = useContext(ProductContext);
   const [comfort, setComfort] = useState(0);
   const [starFilter, setStarFilter] = useState(initialStarFilter);
 
   const handleChange = (e) => {
     setStarFilter((prevState) => ({ ...prevState, [e.target.value]: !prevState[e.target.value] }));
+    setRecordInteraction({
+      element: `${e.target}`,
+      widget: 'Review and Rating',
+      time: new Date(),
+    });
   };
 
   const handleSortChange = (e) => {
     reviewDispatch({ type: SELECT_CHANGE, payload: e.target.value });
+    setRecordInteraction({
+      element: `${e.target}`,
+      widget: 'Review and Rating',
+      time: new Date(),
+    });
   };
 
   const handleModalClick = (e) => {
     reviewDispatch({ type: MODAL_CLICK });
+    setRecordInteraction({
+      element: `${e.target}`,
+      widget: 'Review and Rating',
+      time: new Date(),
+    });
   };
 
   const handleMoreReviews = (e) => {
     reviewDispatch({ type: SET_COUNT });
+    setRecordInteraction({
+      element: `${e.target}`,
+      widget: 'Review and Rating',
+      time: new Date(),
+    });
   };
 
   const getMetaData = (id) => {
@@ -77,8 +97,8 @@ function Reviews({ productId }) {
       });
   };
 
-  const getReviews = (id, count, selected) => {
-    product.getAllReviews(id, count, selected, (err, data) => {
+  const getReviews = (id, selected) => {
+    getAllReviews(id, selected, (err, data) => {
       if (err) {
         console.log(err);
       } else {
@@ -104,6 +124,7 @@ function Reviews({ productId }) {
           }
         });
         reviewDispatch({ type: FETCH_REVIEW_SUCCESS, payload: reviewFilter || data.results });
+        reviewDispatch({ type: SEARCH_RESULT, payload: data.results });
       }
     });
   };
@@ -113,8 +134,8 @@ function Reviews({ productId }) {
   }, [productId]);
 
   useEffect(() => {
-    getReviews(productId, reviewState.count, reviewState.selected);
-  }, [productId, starFilter, reviewState.count, reviewState.selected]);
+    getReviews(productId, reviewState.selected);
+  }, [productId, starFilter, reviewState.selected]);
 
   return (
     <div className="container mb-5">
@@ -122,11 +143,20 @@ function Reviews({ productId }) {
       <div className="container">
         <div className="row">
           <div className="col-md-4">
-            <p className="average-score">
+            <p
+              className="average-score"
+              style={{
+                float: 'left',
+                marginRight: '4px',
+                marginBottom: 0,
+                fontSize: '50px',
+                fontWeight: 'bold',
+              }}
+            >
               {(Math.round(state.average * 10) / 10)}
             </p>
             <Star average={(Math.round(state.average * 4) / 4).toFixed(2)} />
-            <p className="recommended">
+            <p className="recommended" style={{ marginTop: '40px', width: '100%', fontSize: 'small' }}>
               {Math.round(state.recommend)}
               % of reviews recommend this product
             </p>

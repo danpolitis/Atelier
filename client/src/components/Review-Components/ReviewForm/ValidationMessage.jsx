@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const ValidationMessage = (props) => {
   const messageCheck = (overallState) => {
@@ -35,7 +35,7 @@ const ValidationMessage = (props) => {
     if (bodyState === '') {
       return (
         <li><small><em>Review Body *</em></small></li>
-      )
+      );
     }
   };
 
@@ -57,7 +57,7 @@ const ValidationMessage = (props) => {
 
   return (
     <>
-      <ul className="validate-message-list">
+      <ul className="validate-message-list" style={{ listStyle: 'none', color: 'red' }}>
         {messageCheck(props.state.selectedRating)}
         {characteristicsCheck(props.state.fit, props.state.size,
           props.state.length, props.state.width, props.state.quality, props.state.comfort)}

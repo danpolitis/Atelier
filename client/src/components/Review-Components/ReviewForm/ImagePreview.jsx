@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { IoMdCloseCircle } from 'react-icons/io';
 import uniqid from 'uniqid';
+import { ProductContext } from '../../ProductContext.jsx';
 
 const imageStyles = {
   width: '100px',
@@ -10,26 +11,40 @@ const imageStyles = {
   marginRight: '10px',
 };
 
-const ImagePreview = ({ images, handlePhotoDelete }) => (
+const ImagePreview = ({ images, handlePhotoDelete }) => {
+  const { setRecordInteraction } = useContext(ProductContext);
 
-  <div className="image-preview">
-    {images.length > 0 ? images.map((image) => (
-      <div key={uniqid()}>
-        <img
-          style={imageStyles}
-          src={image}
-          alt={image.name}
-        />
-        <IoMdCloseCircle
-          className="photo-upload-delete"
-          size="1.5em"
-          style={{ backgroundColor: 'white', borderRadius: '50%' }}
-          onClick={() => { handlePhotoDelete(image); }}
-        />
-      </div>
-    )) : <div />}
-  </div>
-
-);
+  return (
+    <div className="image-preview" style={{ display: 'flex' }}>
+      {images.length > 0 ? images.map((image) => (
+        <div key={uniqid()}>
+          <img
+            style={imageStyles}
+            src={image}
+            alt={image.name}
+          />
+          <IoMdCloseCircle
+            className="photo-upload-delete"
+            size="1.5em"
+            style={{
+              backgroundColor: 'white',
+              borderRadius: '50%',
+              position: 'relative',
+              top: '-35px',
+              left: '-26px',
+            }}
+            onClick={(e) => {
+              handlePhotoDelete(image); setRecordInteraction({
+                element: `${e.target}`,
+                widget: 'Review and Rating',
+                time: new Date(),
+              });
+            }}
+          />
+        </div>
+      )) : <div />}
+    </div>
+  );
+};
 
 export default ImagePreview;

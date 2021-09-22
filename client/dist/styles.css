@@ -213,49 +213,12 @@
   background-color: #065535;
 }
 
-.progress-label{
-  float:left;
-  margin-right: 1em;
-}
-
 .progress{
   margin-top: 7px;
 }
 
-.review-sort-font{
-  font-weight: bold;
-  padding-right: 10px;
-}
-
-.average-score{
-  float:left;
-  margin-right: 4px;
-  margin-bottom: 0;
-  font-size: 50px;
-  font-weight: bold;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
-}
-
-.recommended{
-  margin-top: 40px;
-  width: 100%;
-  font-size: small;
-}
-
-div.star-container{
-  padding-left: 1px;
-}
-
-.star-rating{
-  padding-top: 10px;
-}
-
 #progress-bar{
   font-size: small;
-}
-
-.characteristics{
-  width: 70%;
 }
 
 .characteristics-label{
@@ -404,68 +367,8 @@ select.styled-select:focus {
   cursor: pointer;
 }
 
-.radio-characteristic-labels{
-  position:relative;
-  padding-top: 10px;
-  padding-left: 20px;
-  text-decoration: underline;
+#searchbar-form.form-control:focus{
+  border-color: green;
+  -webkit-box-shadow: none;
+  box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.2);
 }
-
-.about-product{
-  margin: 15px;
-}
-
-.error-message{
-  color: red;
-  margin-bottom: 0;
-}
-
-.form-group{
-  margin-bottom: 20px;
-}
-
-.validate-message-list{
-  list-style: none;
-  color: red;
-}
-
-.star-rating-form{
-  align-items:stretch;
-  margin-bottom: 16px;
-}
-
-.select-rating-span{
-  padding-left: 25px;
-  vertical-align: middle;
-}
-
-.end-page{
-  margin-top: 20px;
-}
-
-.photo-upload-delete{
-  position: relative;
-  top: -35px;
-  left: -26px;
-}
-
-.image-preview{
-  display:flex;
-}
-
-.review-search{
-  margin-bottom: 15px;
-}
-
-.check-box-rating{
-  position: relative;
-  left: 28px;
-  top: 5px;
-  cursor: pointer;
-  opacity: 0%;
-}
-
-/* .check-box-rating input[type="checkbox"] {
-  display: none;
-  visibility: hidden;
-} */

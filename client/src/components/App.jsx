@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { ProductContext } from './ProductContext.jsx';
 
 import Navbar from './Navbar.jsx';
+import Announcement from './Announcement.jsx';
 import Overview from './Overview.jsx';
 import RelatedItems from './RelatedItems.jsx';
 import QuestionsAndAnswers from './QuestionsAndAnswers.jsx';
@@ -13,6 +14,7 @@ function App() {
   return (
     <>
       <Navbar />
+      <Announcement />
       <Overview productId={productId} />
       <RelatedItems productId={productId} setProductId={setProductId} />
       <QuestionsAndAnswers productId={productId} />

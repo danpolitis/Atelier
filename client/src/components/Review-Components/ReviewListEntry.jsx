@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import StarRatings from 'react-star-ratings';
 import axios from 'axios';
+import { ProductContext } from '../ProductContext.jsx';
 
 const ReviewListEntry = (props) => {
   const [formatDate, setDate] = useState('January 1, 2019');
   const {
-    productId, count, getReviews, review, selected,
+    productId, getReviews, review, selected, searchText,
   } = props;
+  const { setRecordInteraction } = useContext(ProductContext);
 
   const dateFormat = (date) => new Promise((resolve) => {
     resolve(date);
@@ -19,20 +21,45 @@ const ReviewListEntry = (props) => {
       setDate(correctDateFormat);
     });
 
-  const helpfulRequest = () => {
+  const helpfulRequest = (e) => {
     axios.put(`/api/reviews/${review.review_id}/helpful`)
       .then(() => {
-        getReviews(productId, count, selected);
-        console.log('Helpful Updated');
+        getReviews(productId, selected);
       });
+    setRecordInteraction({
+      element: `${e.target}`,
+      widget: 'Review and Rating',
+      time: new Date(),
+    });
   };
 
-  const reportRequest = () => {
+  const reportRequest = (e) => {
     axios.put(`/api/reviews/${review.review_id}/report`)
       .then(() => {
-        getReviews(productId, count, selected);
-        console.log('Review reported');
+        getReviews(productId, selected);
       });
+    setRecordInteraction({
+      element: `${e.target}`,
+      widget: 'Review and Rating',
+      time: new Date(),
+    });
+  };
+
+  const getHighlightedText = (text, highlight) => {
+    // Split on highlight term and include term into parts, ignore case
+    const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
+    return (
+      <span>
+        {' '}
+        { parts.map((part, i) => (
+          <span key={i} style={part.toLowerCase() === highlight.toLowerCase() ? { backgroundColor: '#FFFF00', fontWeight: 'bold' } : {}}>
+            { part }
+          </span>
+        ))}
+        {' '}
+
+      </span>
+    );
   };
 
   useEffect(() => {
@@ -43,7 +70,7 @@ const ReviewListEntry = (props) => {
     <div className="review-container">
       <div className="d-flex justify-content-between">
         <StarRatings starSpacing="2px" rating={review.rating} starRatedColor="rgb(0,0,0)" numberOfStars={5} starDimension="15px" />
-        <p className="username"><small>{`${review.reviewer_name}, ${formatDate}`}</small></p>
+        <p className="username" style={{ fontSize: '.7em' }}><small>{`${review.reviewer_name}, ${formatDate}`}</small></p>
       </div>
       <div>
         {review.summary.length > 60
@@ -52,17 +79,17 @@ const ReviewListEntry = (props) => {
               <p><strong>{`${review.summary.substring(0, 60)}...`}</strong></p>
               <p><small>{review.summary.substring(60)}</small></p>
             </div>
-          ) : <p><strong>{review.summary}</strong></p>}
+          ) : <p><strong>{getHighlightedText(review.summary, searchText)}</strong></p>}
       </div>
       <div>
-        <p><small>{review.body}</small></p>
+        <p><small>{getHighlightedText(review.body, searchText)}</small></p>
       </div>
       <div>
         {review.recommend
           ? (
             <div>
               <p>
-                <i className="bi bi-check2" />
+                <img src="check2.svg" alt="check" />
                 <small className="recommend"> I recommend this product</small>
               </p>
             </div>
@@ -78,17 +105,17 @@ const ReviewListEntry = (props) => {
           ) : <div /> }
       </div>
       <div>
-        <p className="helpful-review">
+        <p className="helpful-review" style={{ fontSize: '.7em' }}>
           <small>
             Helpful?
             {' '}
-            <u onClick={helpfulRequest} className="helpful-review-yes">Yes</u>
+            <u onClick={helpfulRequest} className="helpful-review-yes" style={{ cursor: 'pointer' }}>Yes</u>
             {' '}
             (
             {review.helpfulness}
             ) |
             {' '}
-            <u onClick={reportRequest} className="helpful-review-yes">Report</u>
+            <u onClick={reportRequest} className="helpful-review-yes" style={{ cursor: 'pointer' }}>Report</u>
           </small>
         </p>
       </div>

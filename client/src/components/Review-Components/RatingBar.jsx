@@ -10,9 +10,22 @@ const RatingBar = ({
     const toNumberStar = Number(ratings[star]) || 0;
     const rating = toNumberStar ? (toNumberStar / total) * 100 : 0;
     return (
-      <div key={uniqid()}>
-        <p className="progress-label">
-          <input className="check-box-rating" type="checkbox" checked={starFilter[star]} value={star.toString()} onChange={handleChange} />
+      <div style={{ paddingLeft: 0 }} key={uniqid()}>
+        <p className="progress-label" style={{ float: 'left', marginRight: '1em' }}>
+          <input
+            className="check-box-rating"
+            style={{
+              position: 'relative',
+              left: '28px',
+              top: '5px',
+              cursor: 'pointer',
+              opacity: '0%',
+            }}
+            type="checkbox"
+            checked={starFilter[star]}
+            value={star.toString()}
+            onChange={handleChange}
+          />
           <u style={starFilter[star] ? { color: 'green' } : { color: 'black' }}>
             {star}
             {' '}
@@ -24,7 +37,7 @@ const RatingBar = ({
     );
   });
   return (
-    <div id="progress-bar" className="row">
+    <div id="progress-bar" style={{ fontSize: 'small' }} className="row">
       {progressBar}
     </div>
   );
