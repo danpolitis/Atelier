@@ -1,9 +1,21 @@
 import React from 'react';
+import styled, { css } from 'styled-components';
+
+const MainThumbnailsImg = styled.img`
+  &.active {
+    border-bottom: 5px solid black;
+    padding-bottom: 5px;
+  }
+  width: 60px !important;
+  height: 60px !important;
+  object-fit: cover;
+  opacity: 1 !important;
+`;
 
 function MainThumbnails({ photoUrl, altText, idx, display }) {
   const displayUrl = photoUrl === null ? 'No-Image-Placeholder.svg' : photoUrl;
   return (
-    <img
+    <MainThumbnailsImg
       src={displayUrl}
       data-imgthumb={idx}
       className={`d-block w-100 my-3 ${idx === 0 ? 'active' : ''} ${display ? '' : 'd-none'}`}

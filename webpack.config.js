@@ -5,7 +5,7 @@ const DIST_DIR = path.resolve(__dirname, 'client', 'dist');
 
 module.exports = {
   entry: SOURCE_DIR,
-  mode: 'production',
+  mode: 'development',
   output: {
     filename: 'bundle.js',
     path: DIST_DIR,

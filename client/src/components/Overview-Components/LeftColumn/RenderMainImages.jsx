@@ -1,4 +1,25 @@
 import React from 'react';
+import styled, { css } from 'styled-components';
+
+const CarouselItem = styled.div`
+  cursor: zoom-in;
+  &.zoomed {
+    cursor: zoom-out;
+    height: 100vh;
+  }
+`;
+const CarouselImage = styled.img`
+  position: relative;
+  object-fit: contain;
+  object-position: center;
+  overflow: hidden;
+  height: 75vh;
+  z-index: 10;
+  &.fullscreen {
+    cursor: crosshair;
+    height: calc(100vh - 80px) !important;
+  }
+`;
 
 function RenderMainImages(props) {
   const {
@@ -30,16 +51,20 @@ function RenderMainImages(props) {
   }
 
   return (
-    <div className={`carousel-item ${idx === 0 ? 'active' : ''}`}>
-      <img
+    <CarouselItem className={`carousel-item ${idx === 0 ? 'active' : ''}`}>
+      <CarouselImage
         onClick={fullscreenToggle ? handleZoom : handleFullscreen}
         src={photoUrl}
-        className={`d-block w-100 ${zoom ? 'zoomed' : ''}`}
+        className={`
+          d-block w-100
+          ${zoom ? 'zoomed' : ''}
+          ${fullscreenToggle ? 'fullscreen' : ''}
+        `}
         alt={altText}
         onMouseMove={zoom ? getMouseLocation : () => {}}
         aria-hidden="true"
       />
-    </div>
+    </CarouselItem>
   );
 }
 

@@ -1,6 +1,21 @@
 import React, { useContext } from 'react';
 import StarRatings from 'react-star-ratings';
+import styled from 'styled-components';
 import { ProductContext } from '../../ProductContext.jsx';
+
+const ReviewSnippet = styled.div`
+  svg {
+    height: 20px !important;
+    width: 20px !important;
+  }
+  .star-rating {
+    padding-top: 0px !important;
+  }
+  .ratingLink {
+    margin-top: 4px;
+    margin-left: 10px;
+  }
+`;
 
 function ProductDetailView({ productInfo, selectedStyle }) {
   let renderPrice;
@@ -19,14 +34,14 @@ function ProductDetailView({ productInfo, selectedStyle }) {
   return (
     <>
       {/* Review snippent */}
-      <div className="reviewSnippet my-3 d-flex">
+      <ReviewSnippet className="reviewSnippet my-3 d-flex">
         <span>
           <div className="star-rating">
             <StarRatings starSpacing="2px" rating={Number(averageRating) || 0} starRatedColor="rgb(0,0,0)" numberOfStars={5} starDimension="1em" />
           </div>
         </span>
         <span className="ratingLink"><a href="#reviews" className="text-dark">Read all reviews</a></span>
-      </div>
+      </ReviewSnippet>
       {/*  Category */}
       <div className="text-uppercase">
         {productInfo.category}

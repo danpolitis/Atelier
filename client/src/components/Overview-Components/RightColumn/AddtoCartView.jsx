@@ -10,13 +10,12 @@ function AddtoCartView({ selectedStyle }) {
   let renderQty;
   let renderDefaultQtyOption;
 
-  const { setRecordInteraction } = useContext(ProductContext);
-
   // STATE DECLARATION
   const [validSkus, setValidSkus] = useState([]);
   const [selectedSize, setSelectedSize] = useState('DEFAULT');
   const [quantity, setQuantity] = useState(0);
   const [cartToggle, setCartToggle] = useState(false);
+  const { setRecordInteraction } = useContext(ProductContext);
 
   // LIFECYCLE METHODS
   useEffect(() => {
@@ -74,6 +73,11 @@ function AddtoCartView({ selectedStyle }) {
     setSelectedSize(e.target.value);
     const x = document.getElementById('sizeSelect');
     x.size = 1;
+    setRecordInteraction({
+      element: `${e.target}`,
+      widget: 'Overview',
+      time: new Date(),
+    });
   }
 
   function handleAddCart(e) {

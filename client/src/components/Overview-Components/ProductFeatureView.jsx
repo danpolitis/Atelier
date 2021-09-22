@@ -1,9 +1,22 @@
 import React from 'react';
+import styled from 'styled-components';
+
 import {
   FacebookShareButton, FacebookIcon,
   PinterestShareButton, PinterestIcon,
   TwitterShareButton, TwitterIcon,
 } from 'react-share';
+
+const FeatureList = styled.div`
+  ul {
+    list-style: none;
+  }
+  ul li:before {
+    content: '✓';
+    font-size: 1.75rem;
+    margin-right: 1rem;
+  }
+`;
 
 function ProductFeatureView({ productInfo, selectedStyle }) {
   let renderFeatures;
@@ -34,11 +47,11 @@ function ProductFeatureView({ productInfo, selectedStyle }) {
             {productInfo.description}
           </div>
         </div>
-        <div id="featureList" className="col-lg-4">
+        <FeatureList id="featureList" className="col-lg-4">
           <ul>
             {renderFeatures}
           </ul>
-        </div>
+        </FeatureList>
       </div>
       <div className="row">
         <div className="col-12">

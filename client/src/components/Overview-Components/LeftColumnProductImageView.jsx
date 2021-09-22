@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styled, { css } from 'styled-components';
 import { BiFullscreen } from 'react-icons/bi';
 import { BsChevronCompactDown, BsChevronCompactUp } from 'react-icons/bs';
 
@@ -6,13 +7,64 @@ import RenderMainImages from './LeftColumn/RenderMainImages.jsx';
 import MainThumbnails from './LeftColumn/MainThumbnails.jsx';
 import MainIndicators from './LeftColumn/MainIndicators.jsx';
 
+// STYLED COMPONENTS
+const MainImageInner = styled.div`
+  height: 75vh;
+  width: 100%;
+  ${(props) => props.showFullscreen && css`
+    height: calc(100vh - 80px) !important;
+  `}
+`;
+const CarouselIndicators = styled.div`
+  &.normalView {
+    position: absolute;
+    width: 10%;
+    margin: 0;
+    padding-left: 10px;
+    top: 0;
+    .active {
+      border-bottom: 5px solid black !important;
+      padding-bottom: 5px;
+    }
+  }
+  [data-bs-target] {
+    box-sizing: border-box !important;
+    border: 0;
+  }
+  .thumbnailArrows {
+    color: black;
+    width: 60px;
+    position: relative;
+  }
+`;
+const FullscreenButton = styled.button`
+  display: flex;
+  position: absolute;
+  background: none;
+  border: hidden;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+`;
+const PrevIcon = styled.span`
+  filter: invert();
+`;
+const NextIcon = styled.span`
+  filter: invert();
+`;
+const CarouselPrevButton = styled.button`
+  left: 40px;
+`;
+
 function LeftColumnProductImageView({ selectedStyle, fullscreenToggle, setFullscreenToggle }) {
   let renderMainImages;
   const thumbnailsLength = selectedStyle.photos ? selectedStyle.photos.length : 0;
 
+  // STATE COMPONENTS
   const [zoom, setZoom] = useState(false);
   const [thumbRange, setThumbRange] = useState([0, 6]);
 
+  // CLICK EVENT HANDLERS
   function handleFullscreen() {
     setFullscreenToggle(!fullscreenToggle);
   }
@@ -31,6 +83,7 @@ function LeftColumnProductImageView({ selectedStyle, fullscreenToggle, setFullsc
     ]);
   }
 
+  // CONDITIONAL RENDERING
   if (selectedStyle.photos) {
     renderMainImages = selectedStyle.photos.map((photo, idx) => {
       const displayUrl = photo.url === null ? 'No-Image-Placeholder.svg' : photo.url;
@@ -79,16 +132,17 @@ function LeftColumnProductImageView({ selectedStyle, fullscreenToggle, setFullsc
   }
 
   return (
-    <div className={`${fullscreenToggle ? 'col-lg-12 showFullscreen h-100 g-0' : 'col-lg-8'}`}>
+    <div className={`${fullscreenToggle ? 'col-lg-12 h-100 g-0' : 'col-lg-8'}`}>
       <div id="mainImage" className="carousel slide carousel-fade bg-light" data-interval="false">
-        <div id="mainImageInner" className="carousel-inner">
+        <MainImageInner id="mainImageInner" className="carousel-inner" showFullscreen={fullscreenToggle}>
           {renderMainImages}
-        </div>
-        <button type="button" className={`fullscreen-icon ${zoom ? 'd-none' : ''}`} onClick={handleFullscreen}>
+        </MainImageInner>
+        {/* </div> */}
+        <FullscreenButton type="button" className={`fullscreen-icon ${zoom ? 'd-none' : ''}`} onClick={handleFullscreen}>
           <BiFullscreen size="2em" />
-        </button>
+        </FullscreenButton>
         <div className={`${zoom ? 'd-none' : ''}`}>
-          <div className={`carousel-indicators ${fullscreenToggle ? 'fullscreenView' : 'normalView d-flex flex-column justify-content-evenly'}`}>
+          <CarouselIndicators className={`carousel-indicators ${fullscreenToggle ? 'fullscreenView' : 'normalView d-flex flex-column justify-content-evenly'}`}>
             {/* if thumbnails is greater than  */}
             <BsChevronCompactUp
               size="3em"
@@ -101,13 +155,13 @@ function LeftColumnProductImageView({ selectedStyle, fullscreenToggle, setFullsc
               className={`thumbnailArrows ${thumbnailsLength > 7 && thumbRange[1] !== thumbnailsLength - 1 ? '' : 'd-none'}`}
               onClick={thumbClickDown}
             />
-          </div>
-          <button className="carousel-control-prev" type="button" data-bs-target="#mainImage" data-bs-slide="prev">
-            <span className="carousel-control-prev-icon" aria-hidden="true" />
+          </CarouselIndicators>
+          <CarouselPrevButton className="carousel-control-prev" type="button" data-bs-target="#mainImage" data-bs-slide="prev">
+            <PrevIcon className="carousel-control-prev-icon" aria-hidden="true" />
             <span className="visually-hidden">Previous</span>
-          </button>
+          </CarouselPrevButton>
           <button className="carousel-control-next" type="button" data-bs-target="#mainImage" data-bs-slide="next">
-            <span className="carousel-control-next-icon" aria-hidden="true" />
+            <NextIcon className="carousel-control-next-icon" aria-hidden="true" />
             <span className="visually-hidden">Next</span>
           </button>
         </div>

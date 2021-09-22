@@ -7,8 +7,7 @@
     "build": "webpack --watch",
     "start": "nodemon server/index.js",
     "live": "livereload ./client/dist -w 1000 -d",
-    "test": "jest --config ./jest.config.js",
-    "test-pup": "jest --config ./jestPuppeteer.config.js"
+    "test": "jest --config ./jest.config.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +25,7 @@
     "@babel/preset-react": "^7.14.5",
     "babel-jest": "^27.2.1",
     "babel-loader": "^8.2.2",
+    "babel-plugin-styled-components": "^1.13.2",
     "dotenv": "^10.0.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
@@ -61,6 +61,7 @@
     "react-share": "^4.4.0",
     "react-star-ratings": "^2.3.0",
     "regenerator-runtime": "^0.13.9",
+    "styled-components": "^5.3.1",
     "underscore": "^1.13.1",
     "uniqid": "^5.4.0"
   }
