@@ -16,7 +16,6 @@ const AnswersList = ({ answers }) => {
     });
   };
 
-
   if (moreAnswers) {
     return (
       <>

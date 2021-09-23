@@ -2,11 +2,12 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { ProductContext } from '../ProductContext.jsx';
 
-const AnswerForm = ({ questionId, questionBody }) => {
+const AnswerForm = ({ questionId, questionBody, fetchAnswers }) => {
   const [body, setBody] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const { productInfo } = useContext(ProductContext);
+
 
   const data = ({
     body,
@@ -26,6 +27,9 @@ const AnswerForm = ({ questionId, questionBody }) => {
         setName('');
         setEmail('');
       })
+      .then(() => {
+        fetchAnswers();
+      })
       .catch((err) => {
         console.log(err);
         // console.log(err.response.data);
@@ -35,12 +39,12 @@ const AnswerForm = ({ questionId, questionBody }) => {
 
   const handerSubmitAnswer = (e) => {
     e.preventDefault();
-    // console.log(data);
+    // console.log('submit', data);
     postNewAnswer();
   };
 
   return (
-    <div className="modal" id="answerModal" tabIndex="-1" aria-labelledby="answerModalLabel" aria-hidden="true">
+    <div className="modal" id={`answerModal${questionId}`} tabIndex="-1" aria-labelledby="answerModalLabel" aria-hidden="true">
       <div className="modal-dialog">
         <div className="modal-content">
 
@@ -48,7 +52,7 @@ const AnswerForm = ({ questionId, questionBody }) => {
             <h5 className="modal-title" id="answerModalLabel">Submit Your Answer</h5>
             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
           </div>
-          {/* <span  className="Asubtitle">{`${productInfo.name}: ${questionBody}`}</span> */}
+          <span  className="Asubtitle">{`${productInfo.name}: ${questionBody}`}</span>
           <div className="modal-body">
             <form onSubmit={handerSubmitAnswer}>
               <div className="mb-3">

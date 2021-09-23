@@ -3,7 +3,7 @@ import axios from 'axios';
 import { ProductContext } from '../ProductContext.jsx';
 
 // eslint-disable-next-line react/prop-types
-const QuestionForm = ({ productId }) => {
+const QuestionForm = ({ productId, fetchQuestions }) => {
   const [body, setBody] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -29,7 +29,10 @@ const QuestionForm = ({ productId }) => {
         setName('');
         setEmail('');
       })
-      .catch((err) => {
+      .then(() => {
+        fetchQuestions();
+      })
+      .catch(() => {
         // console.log(err.response.data);
         // console.log(err.response);
       });

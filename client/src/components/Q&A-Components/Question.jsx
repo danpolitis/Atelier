@@ -7,9 +7,8 @@ import AnswersList from './AnswersList.jsx';
 import AnswerForm from './AnswerForm.jsx';
 import { ProductContext } from '../ProductContext.jsx';
 
-const Question = ({ question, searchTerm }) => {
+const Question = ({ question }) => {
   const [answers, setAnswers] = useState([]);
-  const [currentAnswers, setCurrentAnswers] = useState(answers);
   const [helpful, setHelpful] = useState(question.question_helpfulness);
   const [voted, setVoted] = useState(false);
   const [reported, setReported] = useState(false);
@@ -23,7 +22,6 @@ const Question = ({ question, searchTerm }) => {
         if (res.data.results.length) {
           // console.log(res.data.results);
           setAnswers(res.data.results);
-          setCurrentAnswers(res.data.results);
         }
       });
   };
@@ -111,7 +109,7 @@ const Question = ({ question, searchTerm }) => {
           <span
             type="button"
             data-bs-toggle="modal"
-            data-bs-target="#answerModal"
+            data-bs-target={`#answerModal${question.question_id}`}
             onClick={handleAddAnswer}
             className="helpful-review"
           >
@@ -119,12 +117,14 @@ const Question = ({ question, searchTerm }) => {
           </span>
         </div>
       </div>
-      <AnswersList answers={currentAnswers} />
+      <AnswersList answers={answers} />
       <AnswerForm
+        setAnswers={setAnswers}
         questionId={question.question_id}
         questionBody={question.question_body}
         showAnswerForm={showAnswerForm}
         handleAnswerForm={() => { setShowAnswerForm(false); }}
+        fetchAnswers={fetchAnswers}
       />
     </>
   );

@@ -16,9 +16,7 @@ function QuestionsAndAnswers({ productId }) {
 
   const { setRecordInteraction } = useContext(ProductContext);
 
-  useEffect(() => {
-    const { CancelToken } = axios;
-    let cancel;
+  const fetchQuestions = () => {
     axios({
       method: 'GET',
       url: '/api/qa/questions',
@@ -26,17 +24,15 @@ function QuestionsAndAnswers({ productId }) {
         product_id: productId,
         count: 100,
       },
-      cancelToken: new CancelToken((c) => { cancel = c; }),
     })
       .then((res) => {
-        // console.log(res.data.results);
+        console.log(res.data.results);
         setQuestions(res.data.results);
-        setCurrentQuestions(res.data.results);
-      })
-      .catch((e) => {
-        if (axios.isCancel(e)) return;
       });
-    return () => cancel();
+  };
+
+  useEffect(() => {
+    fetchQuestions();
   }, [productId]);
 
   const handleMoreQuestions = (e) => {
@@ -79,13 +75,14 @@ function QuestionsAndAnswers({ productId }) {
       />
       <QuestionForm
         productId={productId}
+        fetchQuestions={fetchQuestions}
         showQuestionsForm={showQuestionsForm}
         handleQuestionForm={() => { setQuestionForm(false); }}
       />
       <QuestionsList
         search={search}
         searchTerm={searchTerm}
-        questions={currentQuestions}
+        questions={questions}
         moreQuestions={moreQuestions}
       />
       <button
