@@ -9,9 +9,9 @@ import AddReview from './ReviewForm/AddReview.jsx';
 const ReviewsList = (props) => {
   const [searchText, setsearchText] = useState('');
   const {
-    productId, totalRatings, characteristics, sizefit, widthlength, handleSortChange,
+    productId, characteristics, sizefit, widthlength, handleSortChange,
     handleModalClick, handleMoreReviews, reviews, count,
-    selected, getReviews,
+    selected, getReviews, theme,
   } = props;
 
   const searchBar = () => (
@@ -43,7 +43,15 @@ const ReviewsList = (props) => {
         </p>
         <form onChange={handleSortChange}>
           <div className="form-group" style={{ marginBottom: '20px' }}>
-            <select className="styled-select">
+            <select
+              className="styled-select"
+              style={theme ? { backgroundColor: 'white' } : {
+                backgroundColor: '#363537',
+                color: 'white',
+                borderBottom: '1px solid white',
+                backgroundImage: 'url(chevron-down-white.svg)',
+              }}
+            >
               <option value="relevant">relevance</option>
               <option value="helpful">helpful</option>
               <option value="newest">newest</option>
@@ -71,6 +79,7 @@ const ReviewsList = (props) => {
             review={review}
             selected={selected}
             searchText={searchText}
+            theme={theme}
           />
         )) : reviews.slice(0, count).map((review) => (
           <ReviewListEntry
@@ -81,6 +90,7 @@ const ReviewsList = (props) => {
             review={review}
             selected={selected}
             searchText={searchText}
+            theme={theme}
           />
         ))}
         {(reviews.length >= 2 && reviews.length >= count)
@@ -109,7 +119,12 @@ const ReviewsList = (props) => {
               >
                 ADD A REVIEW +
               </button>
-              <h4 className="end-page text-muted" style={{ marginTop: '20px' }}>End of Page</h4>
+              <p
+                className="end-page text-muted"
+                style={{ marginTop: '20px', fontWeight: 'lighter', fontStyle: 'italicized' }}
+              >
+                End of Page
+              </p>
             </div>
           )}
       </div>

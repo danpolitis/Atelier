@@ -23,7 +23,7 @@ const initialStarFilter = {
   1: false,
 };
 
-function Reviews({ productId }) {
+function Reviews({ productId, theme }) {
   const [state, dispatch] = useReducer(reviewReducers, initialState);
   const [reviewState, reviewDispatch] = useReducer(reviewListReducer, initState);
   const [size, setSize] = useState(0);
@@ -155,7 +155,7 @@ function Reviews({ productId }) {
             >
               {(Math.round(state.average * 10) / 10)}
             </p>
-            <Star average={(Math.round(state.average * 4) / 4).toFixed(2)} />
+            <Star theme={theme} average={(Math.round(state.average * 4) / 4).toFixed(2)} />
             <p className="recommended" style={{ marginTop: '40px', width: '100%', fontSize: 'small' }}>
               {Math.round(state.recommend)}
               % of reviews recommend this product
@@ -182,6 +182,7 @@ function Reviews({ productId }) {
               count={reviewState.count}
               getReviews={getReviews}
               selected={reviewState.selected}
+              theme={theme}
             />
           </div>
         </div>

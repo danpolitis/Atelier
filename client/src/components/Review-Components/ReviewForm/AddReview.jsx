@@ -51,35 +51,36 @@ const AddReview = (props) => {
 
   const postNewReview = (e) => {
     e.preventDefault();
-    axios.post('/api/reviews', {
-      product_id: productId,
-      rating: state.selectedRating,
-      summary: state.summaryText,
-      body: state.bodyText,
-      recommend: state.selectRec === 'true',
-      name: state.addUsername,
-      email: state.addEmail,
-      photos: [],
-      characteristics: {
-        [sizefit.id]: state.size || state.fit,
-        [widthlength.id]: state.width || state.length,
-        [characteristics.Comfort.id]: state.comfort,
-        [characteristics.Quality.id]: state.quality,
-      },
-    })
-      .then(() => {
-        setErrorMessage(false);
-        setSubmitClick(true);
-        dispatch({ type: CLEAR_ENTRIES });
-        getReviews(productId, selected);
-        console.log('Review Posted');
+    if (state.bodyText.length >= 50) {
+      axios.post('/api/reviews', {
+        product_id: productId,
+        rating: state.selectedRating,
+        summary: state.summaryText,
+        body: state.bodyText,
+        recommend: state.selectRec === 'true',
+        name: state.addUsername,
+        email: state.addEmail,
+        photos: [],
+        characteristics: {
+          [sizefit.id]: state.size || state.fit,
+          [widthlength.id]: state.width || state.length,
+          [characteristics.Comfort.id]: state.comfort,
+          [characteristics.Quality.id]: state.quality,
+        },
       })
-      .catch((err) => {
-        dispatch({ type: CLEAR_ENTRIES });
-        setErrorMessage(true);
-        setSubmitClick(false);
-        console.log(err.response.data);
-      });
+        .then(() => {
+          setErrorMessage(false);
+          setSubmitClick(true);
+          dispatch({ type: CLEAR_ENTRIES });
+          getReviews(productId, selected);
+          console.log('Review Posted');
+        })
+        .catch((err) => {
+          setErrorMessage(true);
+          setSubmitClick(false);
+          console.log(err.response.data);
+        });
+    }
   };
 
   const characteristicsRadio = (characteristic, descOne,

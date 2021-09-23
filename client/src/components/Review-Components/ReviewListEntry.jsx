@@ -6,7 +6,7 @@ import { ProductContext } from '../ProductContext.jsx';
 const ReviewListEntry = (props) => {
   const [formatDate, setDate] = useState('January 1, 2019');
   const {
-    productId, getReviews, review, selected, searchText,
+    productId, getReviews, review, selected, searchText, theme,
   } = props;
   const { setRecordInteraction } = useContext(ProductContext);
 
@@ -52,7 +52,7 @@ const ReviewListEntry = (props) => {
       <span>
         {' '}
         { parts.map((part, i) => (
-          <span key={i} style={part.toLowerCase() === highlight.toLowerCase() ? { backgroundColor: '#FFFF00', fontWeight: 'bold' } : {}}>
+          <span key={i} style={part.toLowerCase() === highlight.toLowerCase() ? { backgroundColor: '#ADAD85', fontWeight: 'bold' } : {}}>
             { part }
           </span>
         ))}
@@ -67,9 +67,9 @@ const ReviewListEntry = (props) => {
   }, []);
 
   return (
-    <div className="review-container">
+    <div className="review-container" style={ theme ? { borderBottom: '1px solid black' } : { borderBottom: '1px solid white' }}>
       <div className="d-flex justify-content-between">
-        <StarRatings starSpacing="2px" rating={review.rating} starRatedColor="rgb(0,0,0)" numberOfStars={5} starDimension="15px" />
+        <StarRatings starSpacing="2px" rating={review.rating} starRatedColor={theme ? 'rgb(0,0,0)' : 'rgb(255,255,255)'} numberOfStars={5} starDimension="15px" />
         <p className="username" style={{ fontSize: '.7em' }}><small>{`${review.reviewer_name}, ${formatDate}`}</small></p>
       </div>
       <div>
@@ -89,7 +89,7 @@ const ReviewListEntry = (props) => {
           ? (
             <div>
               <p>
-                <img src="check2.svg" alt="check" />
+                {theme ? <img src="check2.svg" alt="check" /> : <img src="check2-white.svg" alt="check" /> }
                 <small className="recommend"> I recommend this product</small>
               </p>
             </div>

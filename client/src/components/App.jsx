@@ -23,7 +23,7 @@ function App() {
       <Overview productId={productId} />
       <RelatedItems productId={productId} setProductId={setProductId} />
       <QuestionsAndAnswers productId={productId} />
-      <Reviews productId={productId} />
+      <Reviews productId={productId} theme={theme} />
     </ThemeProvider>
   );
 }
