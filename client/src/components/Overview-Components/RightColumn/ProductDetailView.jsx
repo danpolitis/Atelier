@@ -19,7 +19,7 @@ const ReviewSnippet = styled.div`
 
 function ProductDetailView({ productInfo, selectedStyle }) {
   let renderPrice;
-  const { averageRating } = useContext(ProductContext);
+  const { averageRating, theme } = useContext(ProductContext);
   if (selectedStyle.sale_price) {
     renderPrice = (
       <div>
@@ -37,7 +37,14 @@ function ProductDetailView({ productInfo, selectedStyle }) {
       <ReviewSnippet className="reviewSnippet my-3 d-flex">
         <span>
           <div className="star-rating">
-            <StarRatings starSpacing="2px" rating={Number(averageRating) || 0} starRatedColor="rgb(0,0,0)" numberOfStars={5} starDimension="1em" />
+            <StarRatings
+              starSpacing="2px"
+              rating={Number(averageRating) || 0}
+              starRatedColor={theme ? 'rgb(0,0,0)' : 'rgb(255,255,255)'}
+              starEmptyColor={theme ? 'rgb(203, 211, 227)' : 'rgb(200,200,200)'}
+              numberOfStars={5}
+              starDimension="1em"
+            />
           </div>
         </span>
         <span className="ratingLink"><a href="#reviews">Read all reviews</a></span>

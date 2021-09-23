@@ -65,6 +65,8 @@ function AddtoCartView({ selectedStyle }) {
   let selectSizeMessage = '';
   if (selectedSize === 'DEFAULT') {
     selectSizeMessage = 'Please select size';
+  } else {
+    selectSizeMessage = 'Successfully added to cart';
   }
 
   // CLICK EVENT HANDLERS
@@ -79,11 +81,23 @@ function AddtoCartView({ selectedStyle }) {
     });
   }
 
+  function handleQuantitySelect(e) {
+    setQuantity(e.target.value);
+    setRecordInteraction({
+      element: `${e.target}`,
+      widget: 'Overview',
+      time: new Date(),
+    });
+  }
+
   function handleAddCart(e) {
     if (selectedSize === 'DEFAULT') {
       setCartToggle(!cartToggle);
       const x = document.getElementById('sizeSelect');
       x.size = x.options.length;
+    }
+    if (quantity > 0 && selectedSize !== 'DEFAULT') {
+      setCartToggle(!cartToggle);
     }
     setRecordInteraction({
       element: `${e.target}`,
@@ -121,7 +135,7 @@ function AddtoCartView({ selectedStyle }) {
         </div>
         <div className="col-4">
           <div className="input-group mb-3">
-            <select className="form-select w-100 p-3 border border-dark" defaultValue="DEFAULT">
+            <select onChange={handleQuantitySelect} id="quantitySelect" className="form-select w-100 p-3 border border-dark" defaultValue="DEFAULT">
               {renderDefaultQtyOption}
               {renderQty}
             </select>

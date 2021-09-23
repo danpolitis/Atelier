@@ -16,11 +16,20 @@ const GlobalStyles = createGlobalStyle`
   .form-select {
     background: none;
   }
-  #bsStar {
+  #bsStar, #mainImage img.thumbnailArrows, #mainImage img#biFullscreen {
     filter: ${({ theme }) => theme.filter} !important;
   }
   nav {
     background: ${({ theme }) => theme.navBackground};
+  }
+  #mainImage .carousel-control-next-icon, #mainImage .carousel-control-prev-icon {
+    filter: ${({ theme }) => theme.mainArrow} !important;
+  }
+  .normalView .active {
+    border-bottom: ${({ theme }) => theme.thumbnailBorder} !important;
+  }
+  #style-thumbnails img.selectedImg {
+    border: ${({ theme }) => theme.selectedBorder}
   }
 `;
 

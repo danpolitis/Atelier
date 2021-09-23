@@ -3,15 +3,12 @@ import styled, { css } from 'styled-components';
 import Img from 'react-cool-img';
 
 const MainThumbnailsWrapper = styled.div`
-  .active {
-    border-bottom: 5px solid black;
-    padding-bottom: 5px;
-  }
   .mainThumbnail {
-    width: 60px !important;
-    height: 60px !important;
+    width: 50px !important;
+    height: 50px !important;
     object-fit: cover;
     opacity: 1 !important;
+    background: none;
   }
 `;
 

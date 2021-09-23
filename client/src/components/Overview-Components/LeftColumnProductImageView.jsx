@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled, { css } from 'styled-components';
+import { ProductContext } from '../ProductContext.jsx';
 
 import RenderMainImages from './LeftColumn/RenderMainImages.jsx';
 import MainThumbnails from './LeftColumn/MainThumbnails.jsx';
@@ -21,7 +22,6 @@ const CarouselIndicators = styled.div`
     padding-left: 10px;
     top: 0;
     .active {
-      border-bottom: 5px solid black !important;
       padding-bottom: 5px;
     }
   }
@@ -61,6 +61,7 @@ function LeftColumnProductImageView({ selectedStyle, fullscreenToggle, setFullsc
   // STATE COMPONENTS
   const [zoom, setZoom] = useState(false);
   const [thumbRange, setThumbRange] = useState([0, 6]);
+  const { theme } = useContext(ProductContext);
 
   // CLICK EVENT HANDLERS
   function handleFullscreen() {
@@ -131,19 +132,19 @@ function LeftColumnProductImageView({ selectedStyle, fullscreenToggle, setFullsc
 
   return (
     <div className={`${fullscreenToggle ? 'col-lg-12 h-100 g-0' : 'col-lg-8'}`}>
-      <div id="mainImage" className="carousel slide carousel-fade bg-light" data-interval="false">
+      <div id="mainImage" className={`carousel slide carousel-fade ${theme ? 'bg-light' : 'bg-dark'}`} data-interval="false">
         <MainImageInner id="mainImageInner" className="carousel-inner" showFullscreen={fullscreenToggle}>
           {renderMainImages}
         </MainImageInner>
         <FullscreenButton type="button" className={`fullscreen-icon ${zoom ? 'd-none' : ''}`} onClick={handleFullscreen}>
-          <img alt="biFullscreen" src="assets/biFullscreen.svg" />
+          <img alt="biFullscreen" id="biFullscreen" src="assets/biFullscreen.svg" />
         </FullscreenButton>
         <div className={`${zoom ? 'd-none' : ''}`}>
           <CarouselIndicators className={`carousel-indicators ${fullscreenToggle ? 'fullscreenView' : 'normalView d-flex flex-column justify-content-evenly'}`}>
             <img
               src="assets/BsChevronCompactUp.svg"
               alt="BsChevronCompactUp"
-              className={`thumbnailArrows ${thumbnailsLength > 7 && thumbRange[0] !== 0 ? '' : 'd-none'}`}
+              className={`thumbnailArrows ${thumbnailsLength > 7 && thumbRange[0] !== 0 ? '' : 'd-none'} ${fullscreenToggle ? 'd-none' : ''}`}
               onClick={thumbClickUp}
               onKeyUp={thumbClickUp}
               aria-hidden="true"
@@ -152,7 +153,7 @@ function LeftColumnProductImageView({ selectedStyle, fullscreenToggle, setFullsc
             <img
               src="assets/BsChevronCompactDown.svg"
               alt="BsChevronCompactDown"
-              className={`thumbnailArrows ${thumbnailsLength > 7 && thumbRange[1] !== thumbnailsLength - 1 ? '' : 'd-none'}`}
+              className={`thumbnailArrows ${thumbnailsLength > 7 && thumbRange[1] !== thumbnailsLength - 1 ? '' : 'd-none'} ${fullscreenToggle ? 'd-none' : ''}`}
               onClick={thumbClickDown}
               onKeyDown={thumbClickDown}
               aria-hidden="true"

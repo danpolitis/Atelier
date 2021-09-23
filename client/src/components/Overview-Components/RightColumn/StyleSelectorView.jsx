@@ -10,7 +10,6 @@ const StyleThumbnailsDiv = styled.div`
     border-radius: 50%;
     height: 60px;
     object-fit: cover;
-    border: 2px solid black;
   }
   img.checkIcon {
     position: absolute;
