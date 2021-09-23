@@ -67,9 +67,16 @@ const ReviewListEntry = (props) => {
   }, []);
 
   return (
-    <div className="review-container" style={ theme ? { borderBottom: '1px solid black' } : { borderBottom: '1px solid white' }}>
+    <div className="review-container" style={theme ? { borderBottom: '1px solid black' } : { borderBottom: '1px solid white' }}>
       <div className="d-flex justify-content-between">
-        <StarRatings starSpacing="2px" rating={review.rating} starRatedColor={theme ? 'rgb(0,0,0)' : 'rgb(255,255,255)'} numberOfStars={5} starDimension="15px" />
+        <StarRatings
+          starSpacing="2px"
+          rating={review.rating}
+          starRatedColor={theme ? 'rgb(0,0,0)' : 'rgb(255,255,255)'}
+          starEmptyColor={theme ? 'rgb(203, 211, 227)' : 'rgb(105,105,105)'}
+          numberOfStars={5}
+          starDimension="15px"
+        />
         <p className="username" style={{ fontSize: '.7em' }}><small>{`${review.reviewer_name}, ${formatDate}`}</small></p>
       </div>
       <div>
