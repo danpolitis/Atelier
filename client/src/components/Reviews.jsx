@@ -138,7 +138,7 @@ function Reviews({ productId }) {
   }, [productId, starFilter, reviewState.selected]);
 
   return (
-    <div className="container mb-5">
+    <div id="reviews" className="container mb-5">
       <h5>Ratings & Reviews</h5>
       <div className="container">
         <div className="row">

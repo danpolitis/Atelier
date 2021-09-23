@@ -40,7 +40,7 @@ function ProductDetailView({ productInfo, selectedStyle }) {
             <StarRatings starSpacing="2px" rating={Number(averageRating) || 0} starRatedColor="rgb(0,0,0)" numberOfStars={5} starDimension="1em" />
           </div>
         </span>
-        <span className="ratingLink"><a href="#reviews" className="text-dark">Read all reviews</a></span>
+        <span className="ratingLink"><a href="#reviews">Read all reviews</a></span>
       </ReviewSnippet>
       {/*  Category */}
       <div className="text-uppercase">

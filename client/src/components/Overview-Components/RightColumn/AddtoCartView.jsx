@@ -134,7 +134,7 @@ function AddtoCartView({ selectedStyle }) {
         </div>
         <div className="col-3">
           <button type="button" className="btn btn-outline-dark w-100 p-3" aria-hidden="true" onClick={handleOutfit}>
-            <img alt="bsStar" src="assets/bsStar.svg" />
+            <img alt="bsStar" id="bsStar" src="assets/bsStar.svg" />
           </button>
         </div>
       </div>

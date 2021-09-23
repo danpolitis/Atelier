@@ -1,4 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import { ThemeProvider } from 'styled-components';
+import GlobalStyles from './globalStyles.js';
+import { lightTheme, darkTheme } from './Theme.js';
 import { ProductContext } from './ProductContext.jsx';
 
 import Navbar from './Navbar.jsx';
@@ -10,16 +13,18 @@ import Reviews from './Reviews.jsx';
 
 function App() {
   const { productId, setProductId } = useContext(ProductContext);
+  const [theme, setTheme] = useState(true);
 
   return (
-    <>
-      <Navbar />
+    <ThemeProvider theme={theme ? lightTheme : darkTheme}>
+      <GlobalStyles />
+      <Navbar setTheme={setTheme} theme={theme} />
       <Announcement />
       <Overview productId={productId} />
       <RelatedItems productId={productId} setProductId={setProductId} />
       <QuestionsAndAnswers productId={productId} />
       <Reviews productId={productId} />
-    </>
+    </ThemeProvider>
   );
 }
 
