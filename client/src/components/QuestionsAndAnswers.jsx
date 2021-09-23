@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { ProductContext } from './ProductContext.jsx';
@@ -20,7 +19,13 @@ function QuestionsAndAnswers({ productId }) {
   useEffect(() => {
     const { CancelToken } = axios;
     let cancel;
-    axios.get(`/api/qa/questions?product_id=${productId}`, {
+    axios({
+      method: 'GET',
+      url: '/api/qa/questions',
+      params: {
+        product_id: productId,
+        count: 100,
+      },
       cancelToken: new CancelToken((c) => { cancel = c; }),
     })
       .then((res) => {
