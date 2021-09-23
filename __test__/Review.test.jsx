@@ -78,6 +78,12 @@ beforeEach(() => {
   axios.get.mockResolvedValue(metaData);
 });
 
+<<<<<<< HEAD
+// it('renders App without crashing', () => {
+//   const div = document.createElement('div');
+//   ReactDOM.render(<ProductProvider><App /></ProductProvider>, div);
+// });
+=======
 it('renders Reviews without crashing', () => {
   const div = document.createElement('div');
   const productId = 42366;
@@ -85,6 +91,7 @@ it('renders Reviews without crashing', () => {
     ReactDOM.render(<ProductProvider><Reviews productId={productId} /></ProductProvider>, div);
   });
 });
+>>>>>>> 50536776c79efaf8e1c8fd64d76564028364c143
 
 it('renders ReviewListEntry without crashing', () => {
   const div = document.createElement('div');

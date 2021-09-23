@@ -29,6 +29,7 @@ export const ProductProvider = ({ children }) => {
   useEffect(() => {
     if (Object.keys(recordInteraction).length !== 0) {
       postInteractions(recordInteraction);
+      console.log(recordInteraction);
     }
   }, [recordInteraction]);
 
