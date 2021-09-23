@@ -1,9 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import uniqid from 'uniqid';
 
+const spanStyling = (themeCheck, starClick) => {
+  const styling = {
+    color: 'black',
+    textDecoration: 'underline',
+  };
+
+  if (starClick) {
+    styling.color = 'green';
+  } else if (themeCheck) {
+    styling.color = 'black';
+  } else {
+    styling.color = 'white';
+  }
+  return styling;
+};
+
 const RatingBar = ({
-  total, ratings, handleChange, starFilter,
+  total, ratings, handleChange, starFilter, theme,
 }) => {
   const arrayHolder = [5, 4, 3, 2, 1];
   const progressBar = arrayHolder.map((star) => {
@@ -26,11 +42,11 @@ const RatingBar = ({
             value={star.toString()}
             onChange={handleChange}
           />
-          <u style={starFilter[star] ? { color: 'green' } : { color: 'black' }}>
+          <span className="star-filter" style={spanStyling(theme, starFilter[star])}>
             {star}
             {' '}
             Stars
-          </u>
+          </span>
         </p>
         <ProgressBar style={{ width: '57%', height: '7px' }} now={rating} />
       </div>

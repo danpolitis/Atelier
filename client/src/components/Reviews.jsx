@@ -165,6 +165,7 @@ function Reviews({ productId, theme }) {
               total={state.totalRatings}
               ratings={state.ratings}
               handleChange={handleChange}
+              theme={theme}
             />
             <Characteristics size={size} comfort={comfort} productId={productId} />
           </div>

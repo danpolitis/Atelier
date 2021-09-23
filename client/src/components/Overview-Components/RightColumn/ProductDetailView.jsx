@@ -41,7 +41,7 @@ function ProductDetailView({ productInfo, selectedStyle }) {
               starSpacing="2px"
               rating={Number(averageRating) || 0}
               starRatedColor={theme ? 'rgb(0,0,0)' : 'rgb(255,255,255)'}
-              starEmptyColor={theme ? 'rgb(203, 211, 227)' : 'rgb(200,200,200)'}
+              starEmptyColor={theme ? 'rgb(203, 211, 227)' : 'rgb(100,100,100)'}
               numberOfStars={5}
               starDimension="1em"
             />
