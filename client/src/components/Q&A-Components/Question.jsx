@@ -18,7 +18,7 @@ const Question = ({ question, searchTerm }) => {
   const { setRecordInteraction } = useContext(ProductContext);
 
   const fetchAnswers = () => {
-    axios.get(`/api/qa/questions/${question.question_id}/answers`)
+    axios.get(`/api/qa/questions/${question.question_id}/answers?count=100`)
       .then((res) => {
         if (res.data.results.length) {
           // console.log(res.data.results);

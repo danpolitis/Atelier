@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import React, { useState, useEffect, useContext } from 'react';
 import _ from 'underscore';
 import { ProductContext } from '../../ProductContext.jsx';
+import Img from 'react-cool-img';
 
 const StyleThumbnailsDiv = styled.div`
   img.selectedImg {
@@ -97,7 +98,7 @@ function StyleThumbnails(props) {
 
   return (
     <button type="button" onClick={handleStyleChange} className="mb-4">
-      <img className="selectedImg" src={displayUrl} alt={altText} />
+      <Img className="selectedImg" src={displayUrl} alt={altText} />
       {styleId === selectedStyleId ? <img className="checkIcon" src="assets/faCheckCircle.svg" alt="faCheckCircle.svg" /> : ''}
     </button>
   );

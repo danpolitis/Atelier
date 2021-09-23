@@ -1,5 +1,6 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
+import Img from 'react-cool-img';
 
 const CarouselItem = styled.div`
   cursor: zoom-in;
@@ -7,17 +8,17 @@ const CarouselItem = styled.div`
     cursor: zoom-out;
     height: 100vh;
   }
-`;
-const CarouselImage = styled.img`
-  position: relative;
-  object-fit: contain;
-  object-position: center;
-  overflow: hidden;
-  height: 75vh;
-  z-index: 10;
-  &.fullscreen {
-    cursor: crosshair;
-    height: calc(100vh - 160px) !important;
+  img {
+    position: relative;
+    object-fit: contain;
+    object-position: center;
+    overflow: hidden;
+    height: 75vh;
+    z-index: 10;
+    &.fullscreen {
+      cursor: crosshair;
+      height: calc(100vh - 160px) !important;
+    }
   }
 `;
 
@@ -54,7 +55,7 @@ function RenderMainImages(props) {
 
   return (
     <CarouselItem className={`carousel-item ${idx === 0 ? 'active' : ''}`}>
-      <CarouselImage
+      <Img
         onClick={fullscreenToggle ? handleZoom : handleFullscreen}
         src={photoUrl}
         className={`
