@@ -22,7 +22,9 @@ const ImagePreview = ({ images, handlePhotoDelete }) => {
             src={image}
             alt={image.name}
           />
-          <IoMdCloseCircle
+          <img
+            src="x-circle-fill.svg"
+            alt="x-button"
             className="photo-upload-delete"
             size="1.5em"
             style={{

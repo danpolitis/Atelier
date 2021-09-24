@@ -26,7 +26,6 @@ function QuestionsAndAnswers({ productId }) {
       },
     })
       .then((res) => {
-        console.log(res.data.results);
         setQuestions(res.data.results);
       });
   };
