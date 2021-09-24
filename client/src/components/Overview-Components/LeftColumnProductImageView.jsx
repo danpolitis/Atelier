@@ -142,7 +142,7 @@ function LeftColumnProductImageView({ selectedStyle, fullscreenToggle, setFullsc
         <div className={`${zoom ? 'd-none' : ''}`}>
           <CarouselIndicators className={`carousel-indicators ${fullscreenToggle ? 'fullscreenView' : 'normalView d-flex flex-column justify-content-evenly'}`}>
             <img
-              src="assets/BsChevronCompactUp.svg"
+              src="assets/bsChevronCompactUp.svg"
               alt="BsChevronCompactUp"
               className={`thumbnailArrows ${thumbnailsLength > 7 && thumbRange[0] !== 0 ? '' : 'd-none'} ${fullscreenToggle ? 'd-none' : ''}`}
               onClick={thumbClickUp}
@@ -151,7 +151,7 @@ function LeftColumnProductImageView({ selectedStyle, fullscreenToggle, setFullsc
             />
             {fullscreenToggle ? renderMainIndicators : renderMainThumbnails}
             <img
-              src="assets/BsChevronCompactDown.svg"
+              src="assets/bsChevronCompactDown.svg"
               alt="BsChevronCompactDown"
               className={`thumbnailArrows ${thumbnailsLength > 7 && thumbRange[1] !== thumbnailsLength - 1 ? '' : 'd-none'} ${fullscreenToggle ? 'd-none' : ''}`}
               onClick={thumbClickDown}

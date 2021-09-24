@@ -89,3 +89,4 @@ bundle.js
 
 # ignore pem
 ocelot.pem
+ocelotCA.pem
