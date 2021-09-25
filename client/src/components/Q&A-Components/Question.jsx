@@ -31,11 +31,6 @@ const Question = ({ question }) => {
   }, [question.question_id]);
 
   const handleHelpClick = (e) => {
-    setRecordInteraction({
-      element: `${e.target}`,
-      widget: 'QuestionsAndAnswers',
-      time: new Date(),
-    });
     if (!voted) {
       setVoted((vote) => !vote);
       setHelpful((helped) => helped + 1);
@@ -52,14 +47,14 @@ const Question = ({ question }) => {
           Promise.reject(err);
         });
     }
-  };
-
-  const handleReport = (e) => {
     setRecordInteraction({
       element: `${e.target}`,
       widget: 'QuestionsAndAnswers',
       time: new Date(),
     });
+  };
+
+  const handleReport = (e) => {
     setReported(true);
     axios.put(
       `api/qa/questions/${question.question_id}/report`,
@@ -73,6 +68,11 @@ const Question = ({ question }) => {
       .catch((err) => {
         Promise.reject(err);
       });
+    setRecordInteraction({
+      element: `${e.target}`,
+      widget: 'QuestionsAndAnswers',
+      time: new Date(),
+    });
   };
 
   const handleAddAnswer = (e) => {

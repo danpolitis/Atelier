@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { ProductContext } from '../ProductContext.jsx';
@@ -44,7 +45,7 @@ const QuestionForm = ({ productId, fetchQuestions }) => {
   };
 
   return (
-    <div className="modal" id="questionModal" tabIndex="-1" aria-labelledby="questionModalLabel" aria-hidden="true">
+    <div className="modal fade" id="questionModal" tabIndex="-1" aria-labelledby="questionModalLabel" aria-hidden="true">
       <div className="modal-dialog">
         <div className="modal-content">
 
@@ -57,7 +58,7 @@ const QuestionForm = ({ productId, fetchQuestions }) => {
           <div className="modal-body">
             <form onSubmit={handerSubmitQuestion}>
               <div className="mb-3">
-                <label className="col-form-label">*What is your nickname?</label>
+                <label htmlFor="username" className="col-form-label">*What is your nickname?</label>
                 <input
                   type="text"
                   className="form-control"
@@ -70,7 +71,7 @@ const QuestionForm = ({ productId, fetchQuestions }) => {
 
               <div className="mb-3">
 
-                <label className="col-form-label">*Your email:</label>
+                <label htmlFor="question-email" className="col-form-label">*Your email:</label>
                 <input
                   type="email"
                   className="form-control"
@@ -82,7 +83,7 @@ const QuestionForm = ({ productId, fetchQuestions }) => {
                 <span className="email-notice">For authentication reasons, you will not be emailed</span>
               </div>
               <div className="mb-3">
-                <label  className="col-form-label">*Your question:</label>
+                <label htmlFor="question" className="col-form-label">*Your question:</label>
                 <textarea
                   type="text"
                   className="form-control"

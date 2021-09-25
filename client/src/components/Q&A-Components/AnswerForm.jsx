@@ -52,14 +52,14 @@ const AnswerForm = ({ questionId, questionBody, fetchAnswers }) => {
             <h5 className="modal-title" id="answerModalLabel">Submit Your Answer</h5>
             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
           </div>
-          <span  className="Asubtitle">{`${productInfo.name}: ${questionBody}`}</span>
+          <span className="Asubtitle">{`${productInfo.name}: ${questionBody}`}</span>
           <div className="modal-body">
             <form onSubmit={handerSubmitAnswer}>
               <div className="mb-3">
                 <label className="col-form-label">*What is your nickname?</label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control required"
                   placeholder="Example: jack543!"
                   value={name}
                   onChange={(e) => { setName(e.target.value); }}
@@ -70,7 +70,7 @@ const AnswerForm = ({ questionId, questionBody, fetchAnswers }) => {
                 <label className="col-form-label">*Your email:</label>
                 <input
                   type="email"
-                  className="form-control"
+                  className="form-control required"
                   placeholder="Example: jack@email.com"
                   value={email}
                   onChange={(e) => { setEmail(e.target.value); }}
@@ -82,7 +82,7 @@ const AnswerForm = ({ questionId, questionBody, fetchAnswers }) => {
                 <label className="col-form-label">*Your answer:</label>
                 <textarea
                   type="text"
-                  className="form-control"
+                  className="form-control required"
                   value={body}
                   onChange={(e) => { setBody(e.target.value); }}
                   required
@@ -90,7 +90,7 @@ const AnswerForm = ({ questionId, questionBody, fetchAnswers }) => {
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" className="btn btn-outline-dark" data-bs-dismiss="modal">Submit Answer</button>
+                <button type="submit" id="submit-button" className="btn btn-success" data-bs-dismiss="modal">Submit Answer</button>
               </div>
             </form>
           </div>

@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { ProductContext } from '../ProductContext.jsx';
@@ -10,11 +12,6 @@ const Answer = ({ answer }) => {
   const { setRecordInteraction } = useContext(ProductContext);
 
   const handleHelpClick = (e) => {
-    setRecordInteraction({
-      element: `${e.target}`,
-      widget: 'QuestionsAndAnswers',
-      time: new Date(),
-    });
     if (!voted) {
       setVoted((vote) => !vote);
       setHelpful((helped) => helped + 1);
@@ -31,14 +28,14 @@ const Answer = ({ answer }) => {
           Promise.reject(err);
         });
     }
-  };
-
-  const handleReport = (e) => {
     setRecordInteraction({
       element: `${e.target}`,
       widget: 'QuestionsAndAnswers',
       time: new Date(),
     });
+  };
+
+  const handleReport = (e) => {
     setReported(true);
     axios.put(
       `/api/qa/answers/${answer.answer_id}/report`,
@@ -52,6 +49,11 @@ const Answer = ({ answer }) => {
       .catch((err) => {
         Promise.reject(err);
       });
+    setRecordInteraction({
+      element: `${e.target}`,
+      widget: 'QuestionsAndAnswers',
+      time: new Date(),
+    });
   };
 
   return (
@@ -74,14 +76,15 @@ const Answer = ({ answer }) => {
         <span
           className="answer-helpful"
           onClick={handleHelpClick}
-          >Helpful? Yes:
+        >
+          Helpful? Yes:
           {voted ? `(${helpful})` : `(${helpful})`}
         </span>
         <small>{'  |  '}</small>
         <span
           className="answer-helpful"
           onClick={handleReport}
-          >
+        >
           {reported ? 'Answer was Reported' : 'Report'}
         </span>
       </div>
