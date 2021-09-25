@@ -14,7 +14,6 @@ import {
   ADD_EMAIL, ADD_COMFORT, ADD_QUALITY, ADD_FIT, ADD_SIZE, ADD_WIDTH,
   ADD_LENGTH, initialState, CLEAR_ENTRIES, ADD_PHOTOS, DELETE_PHOTOS,
 } from '../Review-Reducers/formsReducer.jsx';
-import ValidationMessage from './ValidationMessage.jsx';
 import ImagePreview from './ImagePreview.jsx';
 
 // Styles
@@ -23,7 +22,6 @@ const radioCharacteristicsLabel = {
   position: 'relative',
   paddingTop: '10px',
   paddingLeft: '20px',
-  textDecoration: 'underline',
 };
 
 const AddReview = (props) => {
@@ -80,6 +78,8 @@ const AddReview = (props) => {
           setSubmitClick(false);
           console.log(err.response.data);
         });
+    } else {
+      setErrorMessage(true);
     }
   };
 
@@ -96,6 +96,7 @@ const AddReview = (props) => {
             type="radio"
             name={characteristic ? dispatchOne : dispatchTwo}
             value={i + 1}
+            style={{ flexBasis: '25%' }}
           />
         </label>
       </div>
@@ -108,7 +109,7 @@ const AddReview = (props) => {
       <div className="radio-label-vertical-wrapper" key={uniqid()}>
         <label className="radio-label-vertical" htmlFor={`inlineRadio${i + 1}`}>
           {descOne(i + 1)}
-          <input onChange={handleChange} className="form-check-input" type="radio" checked={(i + 1) === key} name={dispatchName} value={i + 1} />
+          <input onChange={handleChange} className="form-check-input" style={{ flexBasis: '25%' }} type="radio" checked={(i + 1) === key} name={dispatchName} value={i + 1} />
         </label>
       </div>
     ));
@@ -130,7 +131,10 @@ const AddReview = (props) => {
           </div>
           <div className="modal-body">
             <form>
-              <p><strong>Overall Rating</strong></p>
+              <p>
+                <strong>Overall Rating</strong>
+                {!state.selectedRating && errorMessage ? <span style={{ color: 'red' }}>&nbsp;*</span> : ''}
+              </p>
               <div className="star-rating-form" style={{ alignItems: 'stretch', marginBottom: '16px' }}>
                 <StarRatings
                   changeRating={(rating) => {
@@ -177,25 +181,46 @@ const AddReview = (props) => {
                 </div>
               </div>
               <div className="characteristics-radio">
-                <p><strong>Characteristics</strong></p>
+                <p style={{ marginBottom: 0 }}>
+                  <strong>Characteristics</strong>
+                </p>
                 <h6 className="radio-characteristic-labels" style={radioCharacteristicsLabel}>
-                  {characteristics.Fit ? 'Fit' : 'Size'}
+                  <u>{characteristics.Fit ? 'Fit' : 'Size'}</u>
+                  {(!state.fit && !state.size) && errorMessage ? <span style={{ color: 'red' }}>&nbsp;*</span> : ''}
                 </h6>
-                {characteristicsRadio(characteristics.Fit, fitDesc,
-                  sizeDesc, state.fit, state.size, ADD_FIT, ADD_SIZE)}
+                <div>
+                  {characteristicsRadio(characteristics.Fit, fitDesc,
+                    sizeDesc, state.fit, state.size, ADD_FIT, ADD_SIZE)}
+                </div>
                 <h6 className="radio-characteristic-labels" style={radioCharacteristicsLabel}>
-                  {characteristics.Length ? 'Length' : 'Width'}
+                  <u>{characteristics.Length ? 'Length' : 'Width'}</u>
+                  {(!state.length && !state.width) && errorMessage ? <span style={{ color: 'red' }}>&nbsp;*</span> : ''}
                 </h6>
-                {characteristicsRadio(characteristics.Length, lenDesc,
-                  widthDesc, state.length, state.width, ADD_LENGTH, ADD_WIDTH)}
-                <h6 className="radio-characteristic-labels" style={radioCharacteristicsLabel}>Comfort</h6>
-                {qualityComfortRadio(comfortDesc, state.comfort, ADD_COMFORT)}
-                <h6 className="radio-characteristic-labels" style={radioCharacteristicsLabel}>Quality</h6>
-                {qualityComfortRadio(qualityDesc, state.quality, ADD_QUALITY)}
+                <div>
+                  {characteristicsRadio(characteristics.Length, lenDesc,
+                    widthDesc, state.length, state.width, ADD_LENGTH, ADD_WIDTH)}
+                </div>
+                <h6 className="radio-characteristic-labels" style={radioCharacteristicsLabel}>
+                  <u>Comfort</u>
+                  {!state.comfort && errorMessage ? <span style={{ color: 'red' }}>&nbsp;*</span> : ''}
+                </h6>
+                <div>
+                  {qualityComfortRadio(comfortDesc, state.comfort, ADD_COMFORT)}
+                </div>
+                <h6 className="radio-characteristic-labels" style={radioCharacteristicsLabel}>
+                  <u>Quality</u>
+                  {!state.quality && errorMessage ? <span style={{ color: 'red' }}>&nbsp;*</span> : ''}
+                </h6>
+                <div>
+                  {qualityComfortRadio(qualityDesc, state.quality, ADD_QUALITY)}
+                </div>
               </div>
               <div className="mb-3">
                 <label className="col-form-label">
-                  <strong>Review summary</strong>
+                  <strong>
+                    Review summary
+                    {(!state.summaryText.length && errorMessage) ? <span style={{ color: 'red' }}>&nbsp;*</span> : ''}
+                  </strong>
                 </label>
                 <textarea
                   type="text"
@@ -204,13 +229,23 @@ const AddReview = (props) => {
                   required
                   name={ADD_SUMMARY}
                   placeholder="Example: Best purchase ever!"
+                  style={(!state.summaryText.length && errorMessage) ? { borderColor: 'red' } : { borderColor: '#D3D3D3' }}
                   value={state.summaryText}
                   onChange={handleChange}
                 />
+                {(!state.summaryText.length && errorMessage) ? (
+                  <p style={{ color: 'red' }}>
+                    <small>Review Summary is Required &nbsp;</small>
+                    <img src="exclamation-circle-fill.svg" alt="exclamation" />
+                  </p>
+                ) : ''}
               </div>
               <div className="mb-3">
                 <label className="col-form-label">
-                  <strong>Review body</strong>
+                  <strong>
+                    Review body
+                    {(!state.bodyText.length && errorMessage) ? <span style={{ color: 'red' }}>&nbsp;*</span> : ''}
+                  </strong>
                 </label>
                 <textarea
                   type="text"
@@ -220,17 +255,19 @@ const AddReview = (props) => {
                   placeholder="Why did you like the product or not?"
                   name={ADD_BODY}
                   value={state.bodyText}
+                  style={(!state.bodyText.length && errorMessage) ? { borderColor: 'red' } : { borderColor: '#D3D3D3' }}
                   onChange={handleChange}
                 />
 
                 {state.bodyText.length < 50
                   ? (
-                    <p className="text-muted">
+                    <p className={state.bodyText.length < 50 && errorMessage ? '' : 'text-muted'} style={state.bodyText.length < 50 && errorMessage ? { color: 'red' } : { color: 'grey' }}>
                       <small>
                         Minimum required characters left: [
                         {50 - state.bodyText.length}
-                        ]
+                        ]&nbsp;
                       </small>
+                      {state.bodyText.length < 50 && errorMessage ? <img src="exclamation-circle-fill.svg" alt="exclamation" /> : ''}
                     </p>
                   )
                   : <p className="text-muted"><small>Minimum reached</small></p>}
@@ -238,6 +275,7 @@ const AddReview = (props) => {
               <div className="mb-3">
                 <label className="col-form-label">
                   <strong>What is your nickname</strong>
+                  {(!state.addUsername.length && errorMessage) ? <span style={{ color: 'red' }}>&nbsp;*</span> : ''}
                 </label>
                 <input
                   type="text"
@@ -246,9 +284,16 @@ const AddReview = (props) => {
                   required
                   placeholder="Example: jackson11!"
                   value={state.addUsername}
+                  style={(!state.addUsername.length && errorMessage) ? { borderColor: 'red' } : { borderColor: '#D3D3D3' }}
                   name={ADD_USER}
                   onChange={handleChange}
                 />
+                {(!state.addUsername.length && errorMessage) ? (
+                  <p style={{ color: 'red', marginBottom: 0 }}>
+                    <small>Username is Required&nbsp;</small>
+                    <img src="exclamation-circle-fill.svg" alt="exclamation" />
+                  </p>
+                ) : ''}
                 <p className="text-muted">
                   <small>
                     For privacy reasons, do not use your full name or email address
@@ -258,6 +303,7 @@ const AddReview = (props) => {
               <div className="mb-3">
                 <label className="col-form-label">
                   <strong>Your email</strong>
+                  {(!state.addEmail && errorMessage) ? <span style={{ color: 'red' }}>&nbsp;*</span> : ''}
                 </label>
                 <input
                   type="email"
@@ -266,9 +312,16 @@ const AddReview = (props) => {
                   required
                   placeholder="Example: jackson11@email.com"
                   value={state.addEmail}
+                  style={(!state.addEmail && errorMessage) ? { borderColor: 'red' } : { borderColor: '#D3D3D3' }}
                   name={ADD_EMAIL}
                   onChange={handleChange}
                 />
+                {(!state.addEmail && errorMessage) ? (
+                  <p style={{ color: 'red', marginBottom: 0 }}>
+                    <small>Email is Required&nbsp;</small>
+                    <img src="exclamation-circle-fill.svg" alt="exclamation" />
+                  </p>
+                ) : ''}
                 <p className="text-muted">
                   <small>
                     For authentication reasons, you will not be emailed
@@ -285,30 +338,30 @@ const AddReview = (props) => {
                 <ImagePreview handlePhotoDelete={handlePhotoDelete} images={state.addPhotos} />
               </div>
               <div className="modal-footer">
-                <button type="button" onClick={() => { dispatch({ type: CLEAR_ENTRIES }); }} className="btn btn-outline-secondary w-30 p-3" data-bs-dismiss="modal">Close</button>
-                <OverlayTrigger
-                  placement="auto"
-                  trigger="focus"
-                  overlay={(
-                    <Popover>
-                      <Popover.Title as="h3">
-                        {submitClick && !errorMessage ? 'Thank you!' : 'Required:'}
-                      </Popover.Title>
-                      <Popover.Content>
-                        {submitClick && !errorMessage
-                          ? (
+                <button type="button" onClick={() => { dispatch({ type: CLEAR_ENTRIES }); setErrorMessage(false); }} className="btn btn-outline-secondary w-30 p-3" data-bs-dismiss="modal">Close</button>
+
+                {submitClick && !errorMessage
+                  ? (
+                    <OverlayTrigger
+                      placement="top"
+                      trigger="focus"
+                      overlay={(
+                        <Popover>
+                          <Popover.Title as="h3">
+                            Thank you!
+                          </Popover.Title>
+                          <Popover.Content>
                             <>
                               <span>Review Submitted! </span>
                               <img src="check2.svg" alt="check" />
                             </>
-                          )
-                          : <ValidationMessage state={state} />}
-                      </Popover.Content>
-                    </Popover>
+                          </Popover.Content>
+                        </Popover>
                   )}
-                >
-                  <button type="submit" onClick={(e) => postNewReview(e)} className="btn btn-outline-dark w-30 p-3">Submit Review</button>
-                </OverlayTrigger>
+                    >
+                      <button type="submit" onClick={(e) => postNewReview(e)} className="btn btn-outline-dark w-30 p-3">Submit Review</button>
+                    </OverlayTrigger>
+                  ) : <button type="submit" onClick={(e) => postNewReview(e)} className="btn btn-outline-dark w-30 p-3">Submit Review</button>}
               </div>
             </form>
           </div>
