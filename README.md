@@ -9,7 +9,8 @@
 - [Yingchen Bai](https://github.com/pppbyc)
 - [Andrew Hang](https://github.com/DrewHang)
 
-<div>
+
+<div align="center">
    <a href="https://github.com/danpolitis">
       <img style="border-radius: 50px" src="https://github.com/danpolitis.png?size=50">
    </a>
@@ -81,8 +82,6 @@ git branch -d feature-branch
   <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"/>
    <img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white" />
    <img src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white" />
-   <img src="" />
-   <img src="" />
 </div>
 
 ### Backend
@@ -99,6 +98,4 @@ git branch -d feature-branch
    <img src="https://img.shields.io/badge/Babel-F9DC3E?style=for-the-badge&logo=babel&logoColor=white" />
   <img src="https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white" />
   <img src="https://img.shields.io/badge/Puppeteer-40B5A4?style=for-the-badge&logo=Puppeteer&logoColor=white" />
-   <img src="" />
-   <img src="" />
 </div>
