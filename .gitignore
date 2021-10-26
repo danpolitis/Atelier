@@ -90,3 +90,4 @@ bundle.js
 # ignore pem
 ocelot.pem
 ocelotCA.pem
+.DS_Store

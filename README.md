@@ -1,58 +1,104 @@
-# Project Catwalk Team Ocelot
- Project Catwalk comprises a complete redesign of the retail portal designed to address this concern and modernize the site.
+# Atelier Products
+> A complete frontent redesign of a retail web-portal to modernize an outdated client-facing platform. The new design showcases a list view of products and a detailed product page with an emphasis on a detailed product photos, related items carousel, questions and answer feature and a star review rating system.
 
- # Team Members
- - [Daniel Politis](https://github.com/danpolitis)
- - [Jeff Liu](https://github.com/theycallmejeff)
- - [Yingchen Bai](https://github.com/pppbyc)
- - [Andrew Hang](https://github.com/DrewHang)
+<img src="./resources/atelier.gif" />
 
+# Team Members
+- [Daniel Politis](https://github.com/danpolitis)
+- [Jeff Liu](https://github.com/theycallmejeff)
+- [Yingchen Bai](https://github.com/pppbyc)
+- [Andrew Hang](https://github.com/DrewHang)
+
+<div>
+   <a href="https://github.com/danpolitis">
+      <img style="border-radius: 50px" src="https://github.com/danpolitis.png?size=50">
+   </a>
+   <a href="https://github.com/theycallmejeff">
+      <img style="border-radius: 50px" src="https://github.com/theycallmejeff.png?size=50">
+   </a>
+   <a href="https://github.com/pppbyc">
+      <img style="border-radius: 50px" src="https://github.com/pppbyc.png?size=50">
+   </a>
+   <a href="https://github.com/DrewHang">
+      <img style="border-radius: 50px" src="https://github.com/DrewHang.png?size=50">
+   </a>
+</div>
+
+# Installation Instructions
+```
+$ npm install
+
+## Add auth token to config.js
+## there is an example file config.example.js
+
+$ npm run build
+$ npm run start
+
+## Navigate to http://localhost:3000
+```
 # Git Feature Branch Workflow
 
-- [Link to workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow)
-- github main repository is the single source of truth
+All feature development takes place on a dedicated branch instead of the main branch. More information can be found [here](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow).
 
-   ## steps for workflow
-   1. Fork and clone the shared repository to your local machine
-      - Keep the master/main branch clean, never commit changes to your local master/main branch
-      - to pull changes from shared repo on main branch use: `$git pull`
-   2. All changes must be done on a new 'feature' branch on your local machine
-      - checkout a new branch on your local repo to make new features
-      - use `$git checkout -b [name_of_feature]`
-   3. To submit features for code review
-      - commit and push your changes to your forked repository and submit a pull request
-         - `$git push origin [name_of_feature]`
-      - make sure the branches are correctly selected on github.com
-      - once the pull request is submitted, add a comment and tag a teammate to request a code review
-   4. Delete the branch on sucessful merge from the main repo to keep the repo clean
+## steps for workflow
+```
+## Clone master branch and update
+git checkout main
+git pull --rebase origin main
 
-   ## Merge Conflicts
-   Occur when multiple pull requests are made on the same file to the shared repository
-   Can be solved one of two ways:
-   1. Complete top level pull request and pull down from the master branch on your local machine
-      - Complete code review for first request
-      - For subsequent pull requests, the user that submitted that pull request must
-      pull changes to your local machine from shared repo
-      - Checkout your feature branch that is associated with the pull request using `$git checkout [name_of_feature]`
-      - Merge the main into your feature branch using `$git merge [name_of_feature]` to handle conflicts on your local machine.
-      - commit and push changes to update the pull request
-   2. Rebase
-      - if there are multiple pull requests on the same file with conflicts
-      - rebase the top-most commit with your commit
+## Start work on a feature
+git checkout -b feature-branch
 
- # Front-End-Dependencies
+## write code, commit, repeat
+git add .
+git commit
 
- - Front-End MVC
-    - ReactJS (`$npm i react react-dom`)
- - Asset compilation + loading
-    - Webpack (`$npm install --save-dev webpack`)
-    - Webpack-dev
+## rebase before pull request
+git pull --rebase origin main
 
- - CSS Frameworks
-    - Bootstrap
-     - (`$npm i boostrap`)
-     - [Link to Bootstrap!](https://getbootstrap.com/)
+## push to a feature branch on YOUR fork
+git push origin feature-branch
 
- # Server
- - MVC
-   - ExpressJS (`$npm i express`)
+## make a pull request on GitHub and check if the action tests have passed
+
+## if pull request is rejected
+## fix bugs, commit
+git add .
+git commit
+git pull --rebase origin main
+git push origin feature-branch
+
+## make a pull request on GitHub
+
+## if pull request is accepted
+git checkout master
+git pull --rebase origin main
+git branch -d feature-branch
+```
+ # Stack
+### Frontend
+<div>
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"/>
+   <img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white" />
+   <img src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white" />
+   <img src="" />
+   <img src="" />
+</div>
+
+### Backend
+<div>
+   <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" />
+   <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" />
+</div>
+
+
+### Devtools
+<div>
+   <img src="https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white" />
+   <img src="https://img.shields.io/badge/Webpack-8DD6F9?style=for-the-badge&logo=Webpack&logoColor=white" />
+   <img src="https://img.shields.io/badge/Babel-F9DC3E?style=for-the-badge&logo=babel&logoColor=white" />
+  <img src="https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white" />
+  <img src="https://img.shields.io/badge/Puppeteer-40B5A4?style=for-the-badge&logo=Puppeteer&logoColor=white" />
+   <img src="" />
+   <img src="" />
+</div>

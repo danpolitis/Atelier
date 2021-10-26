@@ -5,8 +5,10 @@
   "description": "FEC project",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --watch",
-    "start": "nodemon server/index.js",
+    "build:dev": "webpack --watch",
+    "build": "webpack",
+    "start:dev": "nodemon server/index.js",
+    "start": "server/index.js",
     "live": "livereload ./client/dist -w 1000 -d",
     "test": "jest --config ./jest.config.js",
     "stats": "./node_modules/.bin/webpack --json >stats.json",
