@@ -1,5 +1,5 @@
 # Atelier Products
-> A complete frontent redesign of a retail web-portal to modernize an outdated client-facing platform. The new design showcases a list view of products and a detailed product page with an emphasis on a detailed product photos, related items carousel, questions and answer feature and a star review rating system.
+> A complete frontend redesign of a retail web-portal to modernize an outdated client-facing platform. The new design showcases a list view of products and a detailed product page with an emphasis on a detailed product photos, related items carousel, questions and answer feature and a star review rating system.
 
 <img src="./resources/atelier.gif" />
 
